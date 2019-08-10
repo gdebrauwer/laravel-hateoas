@@ -58,4 +58,12 @@ class LinkTest extends TestCase
 
         $this->assertEquals('http://localhost/message/1', $link->url());
     }
+
+    /** @test */
+    public function it_can_get_the_route_name()
+    {
+        $link = new Link('message.show', ['message' => 1]);
+
+        $this->assertEquals('message.show', $link->routeName());
+    }
 }

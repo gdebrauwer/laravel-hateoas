@@ -70,7 +70,7 @@ class Link
     /**
      * Get the name of the link.
      *
-     * @param null|string $name
+     * @param string $name
      *
      * @return string
      */
@@ -115,6 +115,18 @@ class Link
         return once(function () {
             return route($this->routeName, $this->routeParameters);
         });
+    }
+
+    /**
+     * Get the route name of the link.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    public function routeName()
+    {
+        return $this->routeName;
     }
 
     /**
