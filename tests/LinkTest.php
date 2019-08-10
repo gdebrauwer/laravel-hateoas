@@ -3,7 +3,6 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Link;
-use GDebrauwer\Hateoas\Tests\TestCase;
 
 class LinkTest extends TestCase
 {
@@ -57,6 +56,6 @@ class LinkTest extends TestCase
     {
         $link = new Link('message.show', ['message' => 1]);
 
-        $this->assertEquals('http://localhost/message/1', $link->URL());
+        $this->assertEquals('http://localhost/message/1', $link->url());
     }
 }

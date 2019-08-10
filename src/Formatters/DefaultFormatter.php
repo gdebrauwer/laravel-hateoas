@@ -18,7 +18,7 @@ class DefaultFormatter implements Formatter
         return [
             'rel' => $link->name(),
             'type' => $link->method(),
-            'href' => $link->URL(),
+            'href' => $link->url(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace GDebrauwer\Hateoas;
 
+use GDebrauwer\Hateoas\HateoasManager;
 use Illuminate\Support\ServiceProvider;
 
 class HateoasServiceProvider extends ServiceProvider

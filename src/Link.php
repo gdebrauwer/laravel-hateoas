@@ -110,7 +110,7 @@ class Link
      *
      * @return string
      */
-    public function URL()
+    public function url()
     {
         return once(function () {
             return route($this->routeName, $this->routeParameters);
