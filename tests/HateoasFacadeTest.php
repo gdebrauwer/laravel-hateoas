@@ -2,9 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use Orchestra\Testbench\TestCase;
-use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\Hateoas;
+use GDebrauwer\Hateoas\HateoasManager;
 
 class HateoasFacadeTest extends TestCase
 {

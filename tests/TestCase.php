@@ -22,5 +22,4 @@ class TestCase extends BaseTestCase
             RouteServiceProvider::class,
         ];
     }
-
 }

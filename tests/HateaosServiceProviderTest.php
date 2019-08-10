@@ -2,7 +2,6 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use Orchestra\Testbench\TestCase;
 use GDebrauwer\Hateoas\HateoasManager;
 
 class HateaosServiceProviderTest extends TestCase
