@@ -9,7 +9,7 @@ class Link
     /**
      * The name of the link.
      *
-     * @var null|string
+     * @var string
      */
     protected $name;
 
@@ -35,6 +35,7 @@ class Link
      */
     public function __construct(string $routeName, array $routeParameters = [])
     {
+        $this->name = $routeName;
         $this->routeName = $routeName;
         $this->routeParameters = $routeParameters;
     }
@@ -79,18 +80,6 @@ class Link
     }
 
     /**
-     * Get the route of the link.
-     *
-     * @return \Illuminate\Routing\Route
-     */
-    protected function route()
-    {
-        return once(function () {
-            return app(Router::class)->getRoutes()->getByName($this->routeName);
-        });
-    }
-
-    /**
      * Get the HTTP method of the link.
      *
      * @return string
@@ -125,6 +114,18 @@ class Link
     {
         return once(function () {
             return route($this->routeName, $this->routeParameters);
+        });
+    }
+
+    /**
+     * Get the route of the link.
+     *
+     * @return \Illuminate\Routing\Route
+     */
+    protected function route()
+    {
+        return once(function () {
+            return app(Router::class)->getRoutes()->getByName($this->routeName);
         });
     }
 }
