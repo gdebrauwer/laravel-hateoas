@@ -10,19 +10,6 @@ class RouteServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Route::get('message', function () {
-            return  [
-                [
-                    'id' => 1,
-                    'text' => 'Hello world!',
-                ],
-                [
-                    'id' => 2,
-                    'text' => 'Laravel is awesome!',
-                ],
-            ];
-        })->name('message.index');
-
         Route::post('message', function () {
             return [
                 'id' => 1,
@@ -37,6 +24,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::put('message/{message}', function (Message $message) {
             return $message;
         })->name('message.update');
+
+        Route::put('message/{message}/reply', function (Message $message) {
+            return [
+                'id' => 3,
+                'text' => 'Thank you!',
+            ];
+        })->name('message.reply');
 
         Route::delete('message/{message}', function (Message $message) {
             return response(null);
