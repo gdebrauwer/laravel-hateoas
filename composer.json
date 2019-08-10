@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GDebrauwer\\LaravelHateoas\\": "src"
+            "GDebrauwer\\Hateoas\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GDebrauwer\\LaravelHateoas\\Tests\\": "tests"
+            "GDebrauwer\\Hateoas\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "GDebrauwer\\LaravelHateoas\\LaravelHateoasServiceProvider"
+                "GDebrauwer\\Hateoas\\HateoasServiceProvider"
             ],
             "aliases": {
-                "LaravelHateoas": "GDebrauwer\\LaravelHateoas\\LaravelHateoasFacade"
+                "Hateoas": "GDebrauwer\\Hateoas\\Hateoas"
             }
         }
     }

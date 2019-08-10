@@ -1,13 +1,13 @@
 <?php
 
-namespace GDebrauwer\LaravelHateoas;
+namespace GDebrauwer\Hateoas;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \GDebrauwer\LaravelHateoas\Skeleton\SkeletonClass
+ * @see \GDebrauwer\Hateoas\Hateoas
  */
-class LaravelHateoasFacade extends Facade
+class Hateoas extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class LaravelHateoasFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-hateoas';
+        return 'hateoas';
     }
 }
