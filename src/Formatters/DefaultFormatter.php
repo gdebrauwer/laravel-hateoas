@@ -2,23 +2,25 @@
 
 namespace GDebrauwer\Hateoas\Formatters;
 
-use GDebrauwer\Hateoas\Link;
+use GDebrauwer\Hateoas\LinkCollection;
 
 class DefaultFormatter implements Formatter
 {
     /**
-     * Format a link to JSON format.
+     * Format the links to the desired JSON format.
      *
-     * @param \GDebrauwer\Hateoas\Link $link
+     * @param \GDebrauwer\Hateoas\LinkCollection $links
      *
      * @return array
      */
-    public function format(Link $link)
+    public function format(LinkCollection $links)
     {
-        return [
-            'rel' => $link->name(),
-            'type' => $link->method(),
-            'href' => $link->url(),
-        ];
+        return $links->map(function ($link) {
+            return [
+                'rel' => $link->name(),
+                'type' => $link->method(),
+                'href' => $link->url(),
+            ];
+        })->toArray();
     }
 }

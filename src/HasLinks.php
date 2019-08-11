@@ -16,10 +16,9 @@ trait HasLinks
      */
     public function links(string $class = null, $arguments = [])
     {
-        if ($class === null) {
-            $class = Hateoas::guessHateoasClassName(get_class($this->resource));
-        }
-
-        return Hateoas::generate($class, array_merge([$this->resource], $arguments));
+        return Hateoas::generate(
+            $class ?? get_class($this->resource),
+            array_merge([$this->resource], $arguments)
+        );
     }
 }

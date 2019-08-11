@@ -4,7 +4,6 @@ namespace GDebrauwer\Hateoas;
 
 use Illuminate\Support\Str;
 use GDebrauwer\Hateoas\Link;
-use GDebrauwer\Hateoas\Formatters\Formatter;
 
 class HateoasManager
 {
@@ -18,11 +17,13 @@ class HateoasManager
      */
     public function generate(string $class, $arguments = [])
     {
-        return $this->links($class, $arguments)
-            ->map(function ($link) {
-                return app(Formatter::class)->format($link);
-            })
-            ->toArray();
+        $hateoasClass = $this->guessHateoasClassName($class);
+
+        if (class_exists($hateoasClass)) {
+            $class = $hateoasClass;
+        }
+
+        return $this->getLinksFrom($class, $arguments)->format();
     }
 
     /**
@@ -31,11 +32,11 @@ class HateoasManager
      * @param string $class
      * @param array $arguments
      *
-     * @return \Illuminate\Support\Collection
+     * @return \GDebrauwer\Hateoas\LinkCollection
      */
-    protected function links(string $class, $arguments = [])
+    protected function getLinksFrom(string $class, $arguments = [])
     {
-        return collect(get_class_methods($class))
+        $links = collect(get_class_methods($class))
             ->map(function ($method) use ($class, $arguments) {
                 $link = call_user_func_array([new $class, $method], $arguments);
 
@@ -50,6 +51,8 @@ class HateoasManager
                 return $link->as(Str::snake($method));
             })
             ->filter();
+
+        return LinkCollection::make($links);
     }
 
     /**
@@ -57,12 +60,12 @@ class HateoasManager
      *
      * @param string $class
      *
-     * @return void
+     * @return string
      */
-    public function guessHateoasClassName(string $class)
+    protected function guessHateoasClassName(string $class)
     {
         $classDirname = str_replace('/', '\\', dirname(str_replace('\\', '/', $class)));
 
-        return [$classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas'];
+        return $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
     }
 }
