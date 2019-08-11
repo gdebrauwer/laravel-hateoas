@@ -1,6 +1,6 @@
 <?php
 
-namespace GDebrauwer\Hateoas\Tests\App\Resources;
+namespace GDebrauwer\Hateoas\Tests\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use GDebrauwer\Hateoas\HasLinks;

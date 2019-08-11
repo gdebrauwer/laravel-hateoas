@@ -7,16 +7,37 @@ use GDebrauwer\Hateoas\Tests\App\Message;
 
 class MessageHateoasReturningNotAllLinks
 {
+    /**
+     * Get the HATEOAS link to view the message.
+     *
+     * @param \App\Message $message
+     *
+     * @return mixed
+     */
     public function self(Message $message)
     {
-        return new Link('message.show', ['message' => $message->id]);
+        return Link::make('message.show', ['message' => $message->id]);
     }
 
+    /**
+     * Get the HATEOAS link to reply to the message.
+     *
+     * @param \App\Message $message
+     *
+     * @return mixed
+     */
     public function reply(Message $message)
     {
-        return new Link('message.reply', ['message' => $message->id]);
+        return Link::make('message.reply', ['message' => $message->id]);
     }
 
+    /**
+     * Get the HATEOAS link to delete the message.
+     *
+     * @param \App\Message $message
+     *
+     * @return mixed
+     */
     public function delete(Message $message)
     {
         return null;

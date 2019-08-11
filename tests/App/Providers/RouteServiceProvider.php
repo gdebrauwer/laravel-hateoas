@@ -25,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider
             return $message;
         })->name('message.update');
 
-        Route::put('message/{message}/reply', function (Message $message) {
+        Route::post('message/{message}/reply', function (Message $message) {
             return [
                 'id' => 3,
                 'text' => 'Thank you!',

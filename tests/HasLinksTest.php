@@ -3,12 +3,11 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Tests\App\Message;
-use GDebrauwer\Hateoas\Tests\App\Resources\MessageResource;
+use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResource;
 use GDebrauwer\Hateoas\Hateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
-use GDebrauwer\Hateoas\Tests\App\Resources\MessageResourceWithExtraArguments;
-use GDebrauwer\Hateoas\Tests\App\Resources\MessageResourceWithExplicitHateoasClass;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
+use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
+use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExplicitHateoasClass;
 
 class HasLinksTest extends TestCase
 {
@@ -30,35 +29,14 @@ class HasLinksTest extends TestCase
     }
 
     /** @test */
-    public function it_calls_hateaos_generate_method_using_resource_hateoas_class()
+    public function it_calls_hateaos_generate_method_with_resource_class_if_no_other_class_specified()
     {
-        Hateoas::shouldReceive('guessHateoasClassName')
-            ->once()
-            ->with(Message::class)
-            ->andReturn(MessageHateoas::class);
-
         Hateoas::shouldReceive('generate')
             ->once()
-            ->with(MessageHateoas::class, [$this->message])
+            ->with(Message::class, [$this->message])
             ->andReturn([]);
 
         (new MessageResource($this->message))->toArray(null);
-    }
-
-    /** @test */
-    public function it_calls_hateaos_generate_method_with_extra_arguments()
-    {
-        Hateoas::shouldReceive('guessHateoasClassName')
-            ->once()
-            ->with(Message::class)
-            ->andReturn(MessageHateoas::class);
-
-        Hateoas::shouldReceive('generate')
-            ->once()
-            ->with(MessageHateoas::class, [$this->message, 'abc', 123])
-            ->andReturn([]);
-
-        (new MessageResourceWithExtraArguments($this->message))->toArray(null);
     }
 
     /** @test */
@@ -66,9 +44,20 @@ class HasLinksTest extends TestCase
     {
         Hateoas::shouldReceive('generate')
             ->once()
-            ->with(MessageHateoasReturningNoLinks::class, [$this->message])
+            ->with(MessageHateoas::class, [$this->message])
             ->andReturn([]);
 
         (new MessageResourceWithExplicitHateoasClass($this->message))->toArray(null);
+    }
+
+    /** @test */
+    public function it_calls_hateaos_generate_method_with_extra_arguments()
+    {
+        Hateoas::shouldReceive('generate')
+            ->once()
+            ->with(Message::class, [$this->message, 'abc', 123])
+            ->andReturn([]);
+
+        (new MessageResourceWithExtraArguments($this->message))->toArray(null);
     }
 }

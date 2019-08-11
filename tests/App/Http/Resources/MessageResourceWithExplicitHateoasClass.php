@@ -1,10 +1,10 @@
 <?php
 
-namespace GDebrauwer\Hateoas\Tests\App\Resources;
+namespace GDebrauwer\Hateoas\Tests\App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use GDebrauwer\Hateoas\HasLinks;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
+use Illuminate\Http\Resources\Json\JsonResource;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 
 class MessageResourceWithExplicitHateoasClass extends JsonResource
 {
@@ -22,7 +22,7 @@ class MessageResourceWithExplicitHateoasClass extends JsonResource
         return [
             'id' => $this->id,
             'text' => $this->text,
-            '_links' => $this->links(MessageHateoasReturningNoLinks::class),
+            '_links' => $this->links(MessageHateoas::class),
         ];
     }
 }
