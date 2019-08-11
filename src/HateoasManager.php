@@ -51,4 +51,18 @@ class HateoasManager
             })
             ->filter();
     }
+
+    /**
+     * Guess the HATEOAS class name for the given class
+     *
+     * @param string $class
+     *
+     * @return void
+     */
+    public function guessHateoasClassName(string $class)
+    {
+        $classDirname = str_replace('/', '\\', dirname(str_replace('\\', '/', $class)));
+
+        return [$classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas'];
+    }
 }
