@@ -2,11 +2,13 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
-use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Traits\CreatesLinks;
 
 class MessageHateoasWithNonSnakeCaseMethods
 {
+    use CreatesLinks;
+
     /**
      * Get the HATEOAS link to view the message.
      *
@@ -16,7 +18,7 @@ class MessageHateoasWithNonSnakeCaseMethods
      */
     public function self(Message $message)
     {
-        return Link::make('message.show', ['message' => $message->id]);
+        return $this->link('message.show', ['message' => $message->id]);
     }
 
     /**
@@ -28,6 +30,6 @@ class MessageHateoasWithNonSnakeCaseMethods
      */
     public function removeFromThread(Message $message)
     {
-        return Link::make('message.destroy', ['message' => $message->id]);
+        return $this->link('message.destroy', ['message' => $message->id]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace GDebrauwer\Hateoas;
+namespace GDebrauwer\Hateoas\Traits;
 
 use GDebrauwer\Hateoas\Hateoas;
 

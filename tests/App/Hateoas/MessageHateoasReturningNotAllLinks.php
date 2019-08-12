@@ -2,11 +2,13 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
-use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Traits\CreatesLinks;
 
 class MessageHateoasReturningNotAllLinks
 {
+    use CreatesLinks;
+
     /**
      * Get the HATEOAS link to view the message.
      *
@@ -16,7 +18,7 @@ class MessageHateoasReturningNotAllLinks
      */
     public function self(Message $message)
     {
-        return Link::make('message.show', ['message' => $message->id]);
+        return $this->link('message.show', ['message' => $message->id]);
     }
 
     /**
@@ -28,7 +30,7 @@ class MessageHateoasReturningNotAllLinks
      */
     public function reply(Message $message)
     {
-        return Link::make('message.reply', ['message' => $message->id]);
+        return $this->link('message.reply', ['message' => $message->id]);
     }
 
     /**
