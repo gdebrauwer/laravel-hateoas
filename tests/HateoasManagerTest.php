@@ -13,6 +13,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Link;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 
 class HateoasManagerTest extends TestCase
 {
@@ -116,7 +117,7 @@ class HateoasManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_generates_a_link_colelction_without_non_link_results_of_methods_of_hateoas_class()
+    public function it_generates_a_link_collection_without_non_link_results_of_methods_of_hateoas_class()
     {
         $this->mock(DefaultFormatter::class, function ($mock) {
             $mock->shouldReceive('format')
@@ -129,6 +130,23 @@ class HateoasManagerTest extends TestCase
         });
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNonLinks::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_generates_a_link_collection_from_results_of_hateoas_class_methods_with_extra_arguments()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 2
+                        && $this->assertEqualLinks(Link::make('message.show', ['message' => 'abc'])->as('self'), $links[0])
+                        && $this->assertEqualLinks(Link::make('message.destroy', ['message' => 123])->as('delete'), $links[1]);
+                })
+                ->andReturn([]);
+        });
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasWithExtraParameters::class, [Message::make(['id' => 1]), 123, 'abc']));
     }
 
     /** @test */
