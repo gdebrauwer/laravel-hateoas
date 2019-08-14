@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyNamespace;
+
+use GDebrauwer\Hateoas\Traits\CreatesLinks;
+
+class DummyClass
+{
+    use CreatesLinks;
+}

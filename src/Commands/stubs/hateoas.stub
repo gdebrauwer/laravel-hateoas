@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyNamespace;
+
+use NamespacedDummyModel;
+use GDebrauwer\Hateoas\Traits\CreatesLinks;
+
+class DummyClass
+{
+    use CreatesLinks;
+
+    /**
+     * Get the HATEOAS link to view the DocDummyModel.
+     *
+     * @param \NamespacedDummyModel $dummyModel
+     *
+     * @return mixed
+     */
+    public function self(DummyModel $dummyModel)
+    {
+        //
+    }
+}
