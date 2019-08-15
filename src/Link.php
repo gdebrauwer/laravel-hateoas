@@ -70,8 +70,6 @@ class Link
     /**
      * Get the name of the link.
      *
-     * @param string $name
-     *
      * @return string
      */
     public function name()
