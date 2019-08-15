@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use GDebrauwer\Hateoas\Traits\HasLinks;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class MessageResource extends JsonResource
 {

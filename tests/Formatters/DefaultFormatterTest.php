@@ -4,7 +4,6 @@ namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\LinkCollection;
-use GDebrauwer\Hateoas\Tests\TestCase;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 
 class DefaultFormatterTest extends TestCase

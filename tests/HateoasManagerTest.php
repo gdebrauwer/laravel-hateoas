@@ -2,18 +2,18 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
+use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
-use GDebrauwer\Hateoas\Formatters\Formatter;
-use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
-use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 
 class HateoasManagerTest extends TestCase
 {
@@ -37,7 +37,7 @@ class HateoasManagerTest extends TestCase
     }
 
     /**
-     * Check if the provided link is the same as the expected link
+     * Check if the provided link is the same as the expected link.
      *
      * @param \GDebrauwer\Hateoas\Link $link
      *

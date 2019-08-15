@@ -8,7 +8,7 @@ use GDebrauwer\Hateoas\Formatters\Formatter;
 class LinkCollection extends Collection
 {
     /**
-     * Format the links to JSON format
+     * Format the links to JSON format.
      *
      * @return array
      */

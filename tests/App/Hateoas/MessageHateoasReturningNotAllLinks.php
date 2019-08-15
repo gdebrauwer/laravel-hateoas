@@ -42,6 +42,5 @@ class MessageHateoasReturningNotAllLinks
      */
     public function delete(Message $message)
     {
-        return null;
     }
 }

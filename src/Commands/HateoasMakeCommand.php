@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 class HateoasMakeCommand extends GeneratorCommand
 {
-/**
+    /**
      * The console command name.
      *
      * @var string

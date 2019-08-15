@@ -15,7 +15,6 @@ class MessageHateoasReturningNoLinks
      */
     public function self(Message $message)
     {
-        return null;
     }
 
     /**
@@ -27,7 +26,6 @@ class MessageHateoasReturningNoLinks
      */
     public function reply(Message $message)
     {
-        return null;
     }
 
     /**
@@ -39,6 +37,5 @@ class MessageHateoasReturningNoLinks
      */
     public function delete(Message $message)
     {
-        return null;
     }
 }

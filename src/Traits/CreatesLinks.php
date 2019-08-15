@@ -7,7 +7,7 @@ use GDebrauwer\Hateoas\Link;
 trait CreatesLinks
 {
     /**
-     * Create a new link
+     * Create a new link.
      *
      * @param array $arguments
      *

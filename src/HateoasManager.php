@@ -3,7 +3,6 @@
 namespace GDebrauwer\Hateoas;
 
 use Illuminate\Support\Str;
-use GDebrauwer\Hateoas\Link;
 
 class HateoasManager
 {
@@ -41,7 +40,7 @@ class HateoasManager
                 $link = call_user_func_array([new $class, $method], $arguments);
 
                 if ($link === null || ! $link instanceof Link) {
-                    return null;
+                    return;
                 }
 
                 if ($link->name() !== $link->routeName()) {
@@ -56,7 +55,7 @@ class HateoasManager
     }
 
     /**
-     * Guess the HATEOAS class name for the given class
+     * Guess the HATEOAS class name for the given class.
      *
      * @param string $class
      *
