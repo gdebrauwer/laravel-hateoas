@@ -10,9 +10,7 @@
     "type": "library",
     "authors": [
         {
-            "name": "Günther Debrauwer",
-            "email": "debrauwer.gunther@gmail.com",
-            "role": "Developer"
+            "name": "Günther Debrauwer"
         }
     ],
     "require": {
