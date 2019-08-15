@@ -5,6 +5,8 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://scrutinizer-ci.com/g/gdebrauwer/laravel-hateoas)
 [![Total Downloads](https://img.shields.io/packagist/dt/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://packagist.org/packages/gdebrauwer/laravel-hateoas)
 
+> This package is a work in progress.
+
 Do you want to easily expose your REST API authorization logic? HATEOAS is technique to expose that logic usings links. This package makes it very easy to add links to your API resources in Laravel.
 
 ## Installation
@@ -23,7 +25,7 @@ You can create a new HATEOAS class for a model using the following artisan comma
 php artisan make:hateoas MessageHateoas --model=Message
 ```
 
-In the created class you can define public methods that will be used to generate the links. Each method should contain your authorization logic to determine if a link must be returned.
+In the created class you can define public methods that will be used to generate the links. A method should either return a link or `null`.
 
 ```php
 class MessageHateoas
