@@ -19,7 +19,7 @@ class TestCase extends BaseTestCase
     {
         return [
             HateoasServiceProvider::class,
-            RouteServiceProvider::class,
+            RouteServiceProvider::class
         ];
     }
 }
