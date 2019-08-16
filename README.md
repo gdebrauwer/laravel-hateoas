@@ -7,7 +7,34 @@
 
 > This package is a work in progress.
 
-Do you want to easily expose your REST API authorization logic? HATEOAS is technique to expose that logic usings links. This package makes it very easy to add links to your API resources in Laravel.
+[HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) allows you to expose the authorization logic of your REST API.
+This package makes it easy to add such HATEOAS links to your Laravel API resources.
+
+By default an array of links will be added to the JSON of an API resource:
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "text": "Hello world!",
+            "_links": [
+                {
+                    "rel": "self",
+                    "type": "GET",
+                    "href": "http://localhost/message/1"
+                },
+                {
+                    "rel": "delete",
+                    "type": "DELETE",
+                    "href": "http://localhost/message/1"
+                }
+            ]
+        }
+    ]
+}
+```
+
 
 ## Installation
 
@@ -37,7 +64,7 @@ class MessageHateoas
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(Message $message)
     {
@@ -53,7 +80,7 @@ class MessageHateoas
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function delete(Message $message)
     {
@@ -66,7 +93,7 @@ class MessageHateoas
 }
 ```
 
-To add the links to an API resource, you have to add the `HasLinks` trait and use the `$this->links()` method.
+To add the links to an API resource, you have to add the `HasLinks` trait and use the `$this->links()` method. The HATEOAS class will be automatically discovered.
 
 ```php
 class MessageResource extends JsonResource
@@ -90,32 +117,6 @@ class MessageResource extends JsonResource
     }
 }
 ```
-
-This will result in the following JSON:
-
-```json
-{
-    "data": [
-        {
-            "id": 1,
-            "text": "Hello world!",
-            "_links": [
-                {
-                    "rel": "self",
-                    "type": "GET",
-                    "href": "http://localhost/message/1"
-                },
-                {
-                    "rel": "delete",
-                    "type": "DELETE",
-                    "href": "http://localhost/message/1"
-                }
-            ]
-        }
-    ]
-}
-```
-
 
 ### Testing
 
