@@ -16,7 +16,7 @@ class MessageHateoasWithExtraParameters
      * @param int $number
      * @param string $text
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(Message $message, int $number, string $text)
     {
@@ -29,7 +29,7 @@ class MessageHateoasWithExtraParameters
      * @param \App\Message $message
      * @param int $number
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function delete(Message $message, int $number)
     {

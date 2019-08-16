@@ -11,7 +11,7 @@ class MessageHateoasReturningNoLinks
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(Message $message)
     {
@@ -22,7 +22,7 @@ class MessageHateoasReturningNoLinks
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function reply(Message $message)
     {
@@ -33,7 +33,7 @@ class MessageHateoasReturningNoLinks
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function delete(Message $message)
     {

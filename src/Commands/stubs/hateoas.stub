@@ -14,7 +14,7 @@ class DummyClass
      *
      * @param \NamespacedDummyModel $dummyModel
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(DummyModel $dummyModel)
     {

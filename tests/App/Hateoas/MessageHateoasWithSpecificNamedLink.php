@@ -14,7 +14,7 @@ class MessageHateoasWithSpecificNamedLink
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(Message $message)
     {
@@ -26,7 +26,7 @@ class MessageHateoasWithSpecificNamedLink
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function delete(Message $message)
     {

@@ -14,7 +14,7 @@ class MessageHateoasWithNonSnakeCaseMethods
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function self(Message $message)
     {
@@ -26,7 +26,7 @@ class MessageHateoasWithNonSnakeCaseMethods
      *
      * @param \App\Message $message
      *
-     * @return mixed
+     * @return null|\GDebrauwer\Hateoas\Link
      */
     public function removeFromThread(Message $message)
     {
