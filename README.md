@@ -5,12 +5,13 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://scrutinizer-ci.com/g/gdebrauwer/laravel-hateoas)
 [![Total Downloads](https://img.shields.io/packagist/dt/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://packagist.org/packages/gdebrauwer/laravel-hateoas)
 
-> This package is a work in progress.
-
 [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) allows you to expose the authorization logic of your REST API.
-This package makes it easy to add such HATEOAS links to your Laravel API resources.
+This package makes it easy to add HATEOAS links to your Laravel API resources.
 
-By default an array of links will be added to the JSON of an API resource:
+Each resource has its HATEOAS links, and only the accessible links per resource are returned.
+If a link is not available on a resource, then the clients of your API can disable functionality linked to that HATEOAS link.
+
+By default an array of links, in the following format, will be added to the JSON of a Laravel API resource:
 
 ```json
 {
@@ -118,13 +119,24 @@ class MessageResource extends JsonResource
 }
 ```
 
-### Testing
+## Customization
+
+You can customize the JSON links formatting by binding your custom formatter to the service container. The provided formatter class should implement the `Formatter` interface.
+
+```php
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
+
+$this->app->bind(Formatter::class, DefaultFormatter::class);
+```
+
+## Testing
 
 ```bash
 composer test
 ```
 
-### Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
