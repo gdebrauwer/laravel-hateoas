@@ -1,9 +1,12 @@
 {
     "name": "gdebrauwer/laravel-hateoas",
-    "description": "This package provides an easy way to create HATEOAS links",
+    "description": "Expose the authorization logic of your REST API using HATEOAS links on your Laravel API resources",
     "keywords": [
         "gdebrauwer",
-        "laravel-hateoas"
+        "laravel",
+        "HATEOAS",
+        "api",
+        "rest-api"
     ],
     "homepage": "https://github.com/gdebrauwer/laravel-hateoas",
     "license": "MIT",
