@@ -14,6 +14,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
 
 class HateoasManagerTest extends TestCase
 {
@@ -181,6 +182,22 @@ class HateoasManagerTest extends TestCase
         });
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasWithSpecificNamedLink::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_generates_a_link_collection_even_if_hateoas_class_constructor_uses_dependency_injection()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 1
+                        && $this->assertEqualLinks(Link::make('message.show', ['message' => 1])->as('self'), $links[0]);
+                })
+                ->andReturn([]);
+        });
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasWithConstructorDependencyInjection::class, [Message::make(['id' => 1])]));
     }
 
     /** @test */
