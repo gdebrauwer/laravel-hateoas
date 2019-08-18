@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
+use Illuminate\Cache\CacheManager;
 use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Traits\CreatesLinks;
-use Illuminate\Cache\CacheManager;
 
 class MessageHateoasWithConstructorDependencyInjection
 {
