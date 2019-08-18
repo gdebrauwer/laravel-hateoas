@@ -3,6 +3,7 @@
 namespace GDebrauwer\Hateoas;
 
 use Illuminate\Support\Str;
+use Throwable;
 
 class HateoasManager
 {
@@ -22,7 +23,11 @@ class HateoasManager
             $class = $hateoasClass;
         }
 
-        return $this->getLinksFrom($class, $arguments)->format();
+        try {
+            return $this->getLinksFrom($class, $arguments)->format();
+        } catch (Throwable $e) {
+            return (new LinkCollection())->format();
+        }
     }
 
     /**
