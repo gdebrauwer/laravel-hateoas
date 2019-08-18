@@ -36,8 +36,11 @@ class HateoasManager
     protected function getLinksFrom(string $class, $arguments = [])
     {
         $links = collect(get_class_methods($class))
+            ->filter(function ($method) {
+                return ! Str::startsWith($method, '__');
+            })
             ->map(function ($method) use ($class, $arguments) {
-                $link = call_user_func_array([new $class, $method], $arguments);
+                $link = call_user_func_array([app($class), $method], $arguments);
 
                 if ($link === null || ! $link instanceof Link) {
                     return;
@@ -49,7 +52,8 @@ class HateoasManager
 
                 return $link->as(Str::snake($method));
             })
-            ->filter();
+            ->filter()
+            ->values();
 
         return LinkCollection::make($links);
     }
