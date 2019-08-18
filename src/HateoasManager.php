@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas;
 
-use Illuminate\Support\Str;
 use Throwable;
+use Illuminate\Support\Str;
 
 class HateoasManager
 {
