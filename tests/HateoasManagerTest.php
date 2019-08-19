@@ -10,6 +10,7 @@ use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
@@ -98,6 +99,36 @@ class HateoasManagerTest extends TestCase
         });
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNoLinks::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_generates_an_empty_link_collection_if_the_hateoas_class_does_not_exist()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 0;
+                })
+                ->andReturn([]);
+        });
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasThatDoesNotExist::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_generates_an_empty_link_collection_if_a_method_of_hateoas_class_throws_an_exception()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 0;
+                })
+                ->andReturn([]);
+        });
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInAnException::class, [Message::make(['id' => 1])]));
     }
 
     /** @test */
