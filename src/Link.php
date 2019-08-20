@@ -23,7 +23,7 @@ class Link
     /**
      * The route parameters of the link.
      *
-     * @var string
+     * @var array
      */
     protected $routeParameters;
 
@@ -117,8 +117,6 @@ class Link
 
     /**
      * Get the route name of the link.
-     *
-     * @param string $name
      *
      * @return string
      */
