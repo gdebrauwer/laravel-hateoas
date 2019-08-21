@@ -3,7 +3,6 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Link;
-use GDebrauwer\Hateoas\Hateoas;
 use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Formatters\Formatter;
