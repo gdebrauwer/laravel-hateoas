@@ -2,11 +2,13 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
+use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
+use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
@@ -283,5 +285,21 @@ class HateoasManagerTest extends TestCase
         $result = $this->manager->generate(Message::class, [Message::make(['id' => 1])]);
 
         $this->assertEquals([], $result);
+    }
+
+    /** @test */
+    public function it_binds_a_callback_formatter_to_formatter_instance()
+    {
+        $this->manager->formatLinksUsing(function (LinkCollection $links) {
+            return ['key' => 'value'];
+        });
+
+        $formatter = app(Formatter::class);
+
+        $this->assertInstanceOf(CallbackFormatter::class, $formatter);
+        $this->assertEquals(
+            ['key' => 'value'],
+            $formatter->format(new LinkCollection())
+        );
     }
 }
