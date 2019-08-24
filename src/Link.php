@@ -32,6 +32,8 @@ class Link
      *
      * @param string $routeName
      * @param array $routeParameters
+     *
+     * @return void
      */
     public function __construct(string $routeName, array $routeParameters = [])
     {

@@ -17,6 +17,8 @@ class CallbackFormatter implements Formatter
      * Create a new formatter instance.
      *
      * @param callable $callback
+     *
+     * @return void
      */
     public function __construct(callable $callback)
     {
