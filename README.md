@@ -121,13 +121,39 @@ class MessageResource extends JsonResource
 
 ## Customization
 
-You can customize the JSON links formatting by binding your custom formatter to the service container. The provided formatter class should implement the `Formatter` interface.
+#### Formatting
+
+You can customize the JSON links formatting by binding your custom formatter to the service container. The provided formatter class should implement the `Formatter` interface:
 
 ```php
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 
 $this->app->bind(Formatter::class, DefaultFormatter::class);
+```
+
+If the code to format the links is pretty small or you don't want to create a separate formatter class for it, you can provide the custom formatting using a callback:
+
+```php
+use GDebrauwer\Hateoas\Hateoas;
+use GDebrauwer\Hateoas\LinkCollection;
+
+Hateoas::formatLinksUsing(function (LinkCollection $links) {
+    // return array based on links
+});
+```
+
+#### HATEOAS class discovery
+
+By default, the HATEOAS classes of models will be auto-discovered. Specifically, the HATEOAS classes must be in a Hateoas directory below the directory that contains the models.
+If you would like to provide your own HATEOAS class discovery logic, you can register a custom callback:
+
+```php
+use GDebrauwer\Hateoas\Hateoas;
+
+Hateoas::guessHateoasClassNameUsing(function (string $class) {
+    // return a HATEOAS class name
+});
 ```
 
 ## Testing
