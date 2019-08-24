@@ -4,6 +4,8 @@ namespace GDebrauwer\Hateoas;
 
 use Throwable;
 use Illuminate\Support\Str;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 
 class HateoasManager
 {
@@ -98,6 +100,22 @@ class HateoasManager
     public function guessHateoasClassNameUsing(callable $callback)
     {
         $this->guessHateoasClassNameUsingCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify a callback to be used to format a link collection to JSON format.
+     *
+     * @param callable $callback
+     *
+     * @return self
+     */
+    public function formatLinksUsing(callable $callback)
+    {
+        app()->bind(Formatter::class, function () use ($callback) {
+            return new CallbackFormatter($callback);
+        });
 
         return $this;
     }
