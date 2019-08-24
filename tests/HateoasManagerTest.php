@@ -13,6 +13,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\CustomGuess\CustomGuessMessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
@@ -253,6 +254,28 @@ class HateoasManagerTest extends TestCase
                 ->once()
                 ->withArgs(function ($links) {
                     return $links->count() === 3;
+                })
+                ->andReturn([]);
+        });
+
+        $result = $this->manager->generate(Message::class, [Message::make(['id' => 1])]);
+
+        $this->assertEquals([], $result);
+    }
+
+    /** @test */
+    public function it_generates_a_link_collection_for_hateoas_class_guessed_with_custom_closure()
+    {
+        $this->manager->guessHateoasClassNameUsing(function (string $class) {
+            return CustomGuessMessageHateoas::class;
+        });
+
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 1
+                        && $this->assertEqualLinks(Link::make('message.show', ['message' => 1])->as('customGuessSelf'), $links[0]);
                 })
                 ->andReturn([]);
         });

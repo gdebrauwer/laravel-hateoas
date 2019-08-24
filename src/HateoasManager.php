@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 class HateoasManager
 {
     /**
+     * The callback to be used to guess HATEOAS class name.
+     *
+     * @var callable|null
+     */
+    protected $guessHateoasClassNameUsingCallback;
+
+    /**
      * Generate HATEOAS links from the provided class and transform the data to JSON.
      *
      * @param string $class
@@ -72,8 +79,26 @@ class HateoasManager
      */
     protected function guessHateoasClassName(string $class)
     {
+        if ($this->guessHateoasClassNameUsingCallback !== null) {
+            return call_user_func($this->guessHateoasClassNameUsingCallback, $class);
+        }
+
         $classDirname = str_replace('/', '\\', dirname(str_replace('\\', '/', $class)));
 
         return $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
+    }
+
+    /**
+     * Specify a callback to be used to guess the HATEOAS class name.
+     *
+     * @param callable $callback
+     *
+     * @return self
+     */
+    public function guessHateoasClassNameUsing(callable $callback)
+    {
+        $this->guessHateoasClassNameUsingCallback = $callback;
+
+        return $this;
     }
 }
