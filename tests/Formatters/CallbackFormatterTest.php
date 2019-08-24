@@ -44,8 +44,8 @@ class CallbackFormatterTest extends TestCase
 
         $this->assertEquals(
             [
-                [ 'name' => $this->links[0]->name(), 'url' => $this->links[0]->url() ],
-                [ 'name' => $this->links[1]->name(), 'url' => $this->links[1]->url() ],
+                ['name' => $this->links[0]->name(), 'url' => $this->links[0]->url()],
+                ['name' => $this->links[1]->name(), 'url' => $this->links[1]->url()],
             ],
             $result
         );
