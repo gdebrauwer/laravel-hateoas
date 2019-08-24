@@ -2,13 +2,13 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\HateoasManager;
+use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
-use GDebrauwer\Hateoas\LinkCollection;
+use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
