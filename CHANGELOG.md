@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.1.1 - 2019-08-25
+
+- Update docblock of Hateoas facade to include public methods of HateoasManager class ([#11](https://github.com/gdebrauwer/laravel-hateoas/pull/11))
+
 ## 1.1.0 - 2019-08-24
 
 - Customize formatting of links using callback ([#10](https://github.com/gdebrauwer/laravel-hateoas/pull/10))
