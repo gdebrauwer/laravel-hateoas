@@ -24,7 +24,7 @@ class HateoasManager
      *
      * @return array
      */
-    public function generate(string $class, $arguments = [])
+    public function generate(string $class, array $arguments = [])
     {
         $hateoasClass = $this->guessHateoasClassName($class);
 
