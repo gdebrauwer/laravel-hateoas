@@ -12,7 +12,7 @@ trait HasLinks
      * @param string $class
      * @param array $arguments
      *
-     * @return void
+     * @return array
      */
     public function links(string $class = null, $arguments = [])
     {
