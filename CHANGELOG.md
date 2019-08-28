@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.1.2 - 2019-08-28
+
+- Fix return statement in docblock of HasLinks trait ([#12](https://github.com/gdebrauwer/laravel-hateoas/pull/12))
+
 ## 1.1.1 - 2019-08-25
 
 - Update docblock of Hateoas facade to include public methods of HateoasManager class ([#11](https://github.com/gdebrauwer/laravel-hateoas/pull/11))
