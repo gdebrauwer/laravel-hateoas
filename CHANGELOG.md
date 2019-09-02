@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.2.0 - 2019-09-02
+
+- Add support for Laravel 6 ([#13](https://github.com/gdebrauwer/laravel-hateoas/pull/13))
+
 ## 1.1.2 - 2019-08-28
 
 - Fix return statement in docblock of HasLinks trait ([#12](https://github.com/gdebrauwer/laravel-hateoas/pull/12))
