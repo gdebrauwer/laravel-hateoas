@@ -37,4 +37,4 @@ script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_success:
-  - if [[ $COVERAGE = 1 ]]; php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover report; fi
+  - if [[ $COVERAGE = 1 ]]; then php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover report; fi
