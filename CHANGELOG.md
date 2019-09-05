@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.2.1 - 2019-09-05
+
+- Update Travis setup to run tests for every supported Laravel version ([#15](https://github.com/gdebrauwer/laravel-hateoas/pull/15))
+- Add v4 of orchestra/testbench ([#14](https://github.com/gdebrauwer/laravel-hateoas/pull/14))
+
 ## 1.2.0 - 2019-09-02
 
 - Add support for Laravel 6 ([#13](https://github.com/gdebrauwer/laravel-hateoas/pull/13))
