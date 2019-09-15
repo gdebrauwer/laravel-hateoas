@@ -3,8 +3,10 @@
 namespace GDebrauwer\Hateoas;
 
 use Throwable;
+use InvalidArgumentException;
 use Illuminate\Routing\Router;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
+use Illuminate\Routing\Exceptions\UrlGenerationException;
 
 class Link
 {
@@ -84,6 +86,8 @@ class Link
     /**
      * Get the HTTP method of the link.
      *
+     * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
+     *
      * @return string
      */
     public function method()
@@ -98,6 +102,8 @@ class Link
     /**
      * Get the URL path of the link.
      *
+     * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
+     *
      * @return string
      */
     public function path()
@@ -106,13 +112,23 @@ class Link
             try {
                 return route($this->routeName, $this->routeParameters, false);
             } catch (Throwable $exception) {
-                throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+                if ($exception instanceof InvalidArgumentException) {
+                    throw LinkException::routeNotFound($this->name, $this->routeName);
+                }
+
+                if ($exception instanceof UrlGenerationException) {
+                    throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+                }
+
+                throw $exception;
             }
         });
     }
 
     /**
      * Get the URL of the link.
+     *
+     * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
      *
      * @return string
      */
@@ -122,7 +138,15 @@ class Link
             try {
                 return route($this->routeName, $this->routeParameters);
             } catch (Throwable $exception) {
-                throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+                if ($exception instanceof InvalidArgumentException) {
+                    throw LinkException::routeNotFound($this->name, $this->routeName);
+                }
+
+                if ($exception instanceof UrlGenerationException) {
+                    throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+                }
+
+                throw $exception;
             }
         });
     }
@@ -139,6 +163,8 @@ class Link
 
     /**
      * Get the route of the link.
+     *
+     * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
      *
      * @return \Illuminate\Routing\Route
      */
