@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas;
 
+use Throwable;
 use Illuminate\Routing\Router;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
-use Throwable;
 
 class Link
 {
