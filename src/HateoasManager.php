@@ -2,10 +2,10 @@
 
 namespace GDebrauwer\Hateoas;
 
-use GDebrauwer\Hateoas\Exceptions\LinkException;
 use Throwable;
 use Illuminate\Support\Str;
 use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 
 class HateoasManager
