@@ -2,6 +2,7 @@
 
 namespace GDebrauwer\Hateoas;
 
+use GDebrauwer\Hateoas\Exceptions\LinkException;
 use Throwable;
 use Illuminate\Support\Str;
 use GDebrauwer\Hateoas\Formatters\Formatter;
@@ -34,7 +35,11 @@ class HateoasManager
 
         try {
             return $this->getLinksFrom($class, $arguments)->format();
-        } catch (Throwable $e) {
+        } catch (Throwable $exception) {
+            if ($exception instanceof LinkException) {
+                throw $exception;
+            }
+
             return (new LinkCollection())->format();
         }
     }

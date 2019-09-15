@@ -3,6 +3,8 @@
 namespace GDebrauwer\Hateoas;
 
 use Illuminate\Routing\Router;
+use GDebrauwer\Hateoas\Exceptions\LinkException;
+use Throwable;
 
 class Link
 {
@@ -101,7 +103,11 @@ class Link
     public function path()
     {
         return once(function () {
-            return route($this->routeName, $this->routeParameters, false);
+            try {
+                return route($this->routeName, $this->routeParameters, false);
+            } catch (Throwable $exception) {
+                throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+            }
         });
     }
 
@@ -113,7 +119,11 @@ class Link
     public function url()
     {
         return once(function () {
-            return route($this->routeName, $this->routeParameters);
+            try {
+                return route($this->routeName, $this->routeParameters);
+            } catch (Throwable $exception) {
+                throw LinkException::routeMissingParameters($this->name, $this->routeName, $exception);
+            }
         });
     }
 
@@ -135,7 +145,13 @@ class Link
     protected function route()
     {
         return once(function () {
-            return app(Router::class)->getRoutes()->getByName($this->routeName);
+            $route = app(Router::class)->getRoutes()->getByName($this->routeName);
+
+            if ($route === null) {
+                throw LinkException::routeNotFound($this->name, $this->routeName);
+            }
+
+            return $route;
         });
     }
 }
