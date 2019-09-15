@@ -2,6 +2,7 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
+use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Link;
 
 class LinkTest extends TestCase
@@ -44,6 +45,17 @@ class LinkTest extends TestCase
     }
 
     /** @test */
+    public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_http_method_of_route()
+    {
+        $link = (new Link('random.route'))->as('randomlink');
+
+        $this->expectException(LinkException::class);
+        $this->expectExceptionMessage("Link with name `{$link->name()}` could not be created because route with name `{$link->routeName()}` could not be found");
+
+        $link->method();
+    }
+
+    /** @test */
     public function it_can_get_the_path_of_the_route()
     {
         $link = new Link('message.show', ['message' => 1]);
@@ -52,11 +64,55 @@ class LinkTest extends TestCase
     }
 
     /** @test */
+    public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_path_of_route()
+    {
+        $link = (new Link('random.route'))->as('randomlink');
+
+        $this->expectException(LinkException::class);
+        $this->expectExceptionMessage("Link with name `{$link->name()}` could not be created because route with name `{$link->routeName()}` could not be found");
+
+        $link->path();
+    }
+
+    /** @test */
+    public function it_throws_link_exception_if_it_misses_route_parameters_when_trying_to_get_path_of_route()
+    {
+        $link = (new Link('message.show'))->as('self');
+
+        $this->expectException(LinkException::class);
+        $this->expectExceptionMessage("Link with name `{$link->name()}` could not be created because not all parameters for route with name `{$link->routeName()}` were provided");
+
+        $link->path();
+    }
+
+    /** @test */
     public function it_can_get_the_full_url_of_the_route()
     {
         $link = new Link('message.show', ['message' => 1]);
 
         $this->assertEquals('http://localhost/message/1', $link->url());
+    }
+
+    /** @test */
+    public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_full_url_of_route()
+    {
+        $link = (new Link('random.route'))->as('randomlink');
+
+        $this->expectException(LinkException::class);
+        $this->expectExceptionMessage("Link with name `{$link->name()}` could not be created because route with name `{$link->routeName()}` could not be found");
+
+        $link->url();
+    }
+
+    /** @test */
+    public function it_throws_link_exception_if_it_misses_route_parameters_when_trying_to_get_full_url_of_route()
+    {
+        $link = (new Link('message.show'))->as('self');
+
+        $this->expectException(LinkException::class);
+        $this->expectExceptionMessage("Link with name `{$link->name()}` could not be created because not all parameters for route with name `{$link->routeName()}` were provided");
+
+        $link->url();
     }
 
     /** @test */
