@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Link;
+use GDebrauwer\Hateoas\Exceptions\LinkException;
 
 class LinkTest extends TestCase
 {
