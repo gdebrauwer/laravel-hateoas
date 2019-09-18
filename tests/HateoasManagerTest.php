@@ -7,6 +7,7 @@ use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
@@ -17,7 +18,8 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\CustomGuess\CustomGuessMessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnException;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInALinkException;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnNonLinkException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
 
 class HateoasManagerTest extends TestCase
@@ -32,7 +34,7 @@ class HateoasManagerTest extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -117,21 +119,6 @@ class HateoasManagerTest extends TestCase
         });
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasThatDoesNotExist::class, [Message::make(['id' => 1])]));
-    }
-
-    /** @test */
-    public function it_generates_an_empty_link_collection_if_a_method_of_hateoas_class_throws_an_exception()
-    {
-        $this->mock(DefaultFormatter::class, function ($mock) {
-            $mock->shouldReceive('format')
-                ->once()
-                ->withArgs(function ($links) {
-                    return $links->count() === 0;
-                })
-                ->andReturn([]);
-        });
-
-        $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInAnException::class, [Message::make(['id' => 1])]));
     }
 
     /** @test */
@@ -301,5 +288,28 @@ class HateoasManagerTest extends TestCase
             ['key' => 'value'],
             $formatter->format(new LinkCollection())
         );
+    }
+
+    /** @test */
+    public function it_does_not_throw_an_exception_and_fallbacks_on_empty_link_collection_if_exception_is_not_a_link_exception()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 0;
+                })
+                ->andReturn([]);
+        });
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInAnNonLinkException::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_throws_exception_if_exception_is_a_link_exception_when_generating_hateoas_result()
+    {
+        $this->expectException(LinkException::class);
+
+        $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInALinkException::class, [Message::make(['id' => 1])]));
     }
 }
