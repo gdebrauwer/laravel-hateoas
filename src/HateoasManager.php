@@ -121,7 +121,7 @@ class HateoasManager
     {
         if (is_callable($formatter)) {
             $formatter = new CallbackFormatter($formatter);
-        } else if (is_string($formatter) && class_exists($formatter)) {
+        } elseif (is_string($formatter) && class_exists($formatter)) {
             if (! is_subclass_of($formatter, $interface = Formatter::class)) {
                 throw new InvalidArgumentException("`{$formatter}` class does not implement the `{$interface}` interface");
             }
