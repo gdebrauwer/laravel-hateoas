@@ -4,6 +4,7 @@ namespace GDebrauwer\Hateoas;
 
 use Throwable;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
@@ -110,16 +111,28 @@ class HateoasManager
     }
 
     /**
-     * Specify a callback to be used to format a link collection to JSON format.
+     * Set formatter that needs to be used to format a link collection to JSON format.
      *
-     * @param callable $callback
+     * @param string|callable $formatter
      *
      * @return self
      */
-    public function formatLinksUsing(callable $callback)
+    public function formatLinksUsing($formatter)
     {
-        app()->bind(Formatter::class, function () use ($callback) {
-            return new CallbackFormatter($callback);
+        if (is_callable($formatter)) {
+            $formatter = new CallbackFormatter($formatter);
+        } else if (is_string($formatter) && class_exists($formatter)) {
+            if (! is_subclass_of($formatter, $interface = Formatter::class)) {
+                throw new InvalidArgumentException("`{$formatter}` class does not implement the `{$interface}` interface");
+            }
+
+            $formatter = app($formatter);
+        } else {
+            throw new InvalidArgumentException("`{$formatter}` is neither a valid classname or a function");
+        }
+
+        app()->bind(Formatter::class, function () use ($formatter) {
+            return $formatter;
         });
 
         return $this;
