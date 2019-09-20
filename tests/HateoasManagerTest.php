@@ -3,6 +3,7 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Link;
+use InvalidArgumentException;
 use GDebrauwer\Hateoas\HateoasManager;
 use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Tests\App\Message;
@@ -11,6 +12,7 @@ use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
+use GDebrauwer\Hateoas\Tests\App\Formatters\CustomFormatter;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
@@ -19,6 +21,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\CustomGuess\CustomGuessMessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInALinkException;
+use GDebrauwer\Hateoas\Tests\App\Formatters\CustomFormatterNotImplementingInterface;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnNonLinkException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
 
@@ -275,22 +278,6 @@ class HateoasManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_binds_a_callback_formatter_to_formatter_instance()
-    {
-        $this->manager->formatLinksUsing(function (LinkCollection $links) {
-            return ['key' => 'value'];
-        });
-
-        $formatter = app(Formatter::class);
-
-        $this->assertInstanceOf(CallbackFormatter::class, $formatter);
-        $this->assertEquals(
-            ['key' => 'value'],
-            $formatter->format(new LinkCollection())
-        );
-    }
-
-    /** @test */
     public function it_does_not_throw_an_exception_and_fallbacks_on_empty_link_collection_if_exception_is_not_a_link_exception()
     {
         $this->mock(DefaultFormatter::class, function ($mock) {
@@ -311,5 +298,63 @@ class HateoasManagerTest extends TestCase
         $this->expectException(LinkException::class);
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInALinkException::class, [Message::make(['id' => 1])]));
+    }
+
+    /** @test */
+    public function it_binds_a_callback_formatter_to_formatter_interface()
+    {
+        $this->manager->formatLinksUsing(function (LinkCollection $links) {
+            return ['key' => 'value'];
+        });
+
+        $formatter = app(Formatter::class);
+
+        $this->assertInstanceOf(CallbackFormatter::class, $formatter);
+        $this->assertEquals(
+            ['key' => 'value'],
+            $formatter->format(new LinkCollection())
+        );
+    }
+
+    /** @test */
+    public function it_binds_an_instance_of_provided_formatter_class_to_formatter_interface()
+    {
+        $this->manager->formatLinksUsing(CustomFormatter::class);
+
+        $this->assertInstanceOf(CustomFormatter::class, app(Formatter::class));
+    }
+
+    /** @test */
+    public function it_throws_exception_if_provided_formatter_class_does_not_exist()
+    {
+        $formatter = NonExistingFormatter::class;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("`{$formatter}` is neither a valid classname or a function");
+
+        $this->manager->formatLinksUsing($formatter);
+    }
+
+    /** @test */
+    public function it_throws_exception_if_provided_formatter_class_does_not_implement_the_formatter_interface()
+    {
+        $formatter = CustomFormatterNotImplementingInterface::class;
+        $interface = Formatter::class;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("`{$formatter}` class does not implement the `{$interface}` interface");
+
+        $this->manager->formatLinksUsing($formatter);
+    }
+
+    /** @test */
+    public function it_throws_exception_if_provided_formatter_is_no_callable_or_string()
+    {
+        $formatter = 123;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("`{$formatter}` is neither a valid classname or a function");
+
+        $this->manager->formatLinksUsing($formatter);
     }
 }
