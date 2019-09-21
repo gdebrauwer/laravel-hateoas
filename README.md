@@ -123,21 +123,17 @@ class MessageResource extends JsonResource
 
 #### Formatting
 
-You can customize the JSON links formatting by binding your custom formatter to the service container. The provided formatter class should implement the `Formatter` interface:
-
-```php
-use GDebrauwer\Hateoas\Formatters\Formatter;
-use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
-
-$this->app->bind(Formatter::class, DefaultFormatter::class);
-```
-
-If the code to format the links is pretty small or you don't want to create a separate formatter class for it, you can provide the custom formatting using a callback:
+You can customize the JSON links formatting by providing a formatter class that implements the `Formatter` interface to the `formatLinksUsing` method.
+If the code to format the links is pretty small or you don't want to create a separate formatter class for it, you also have the option to provide a formatting callback function to the `formatLinksUsing` method.
 
 ```php
 use GDebrauwer\Hateoas\Hateoas;
 use GDebrauwer\Hateoas\LinkCollection;
 
+// Provide your own Formatter class ...
+Hateoas::formatLinksUsing(CustomFormatter::class);
+
+// ... Or provide a callback
 Hateoas::formatLinksUsing(function (LinkCollection $links) {
     // return array based on links
 });
