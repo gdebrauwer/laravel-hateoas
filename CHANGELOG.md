@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.3.0 - 2019-09-22
+
+- Change `links()` method of `HasLinks` trait to allow extra arguments array to be passed via first parameter ([#21](https://github.com/gdebrauwer/laravel-hateoas/pull/21))
+- Allow `formatLinksUsing()` method to accept either a formatter classname or callback ([#20](https://github.com/gdebrauwer/laravel-hateoas/pull/20))
+- Throw custom exceptions if `Link` object can not be used ([#18](https://github.com/gdebrauwer/laravel-hateoas/pull/18))
+
 ## 1.2.1 - 2019-09-05
 
 - Update Travis setup to run tests for every supported Laravel version ([#15](https://github.com/gdebrauwer/laravel-hateoas/pull/15))
@@ -13,11 +19,11 @@ All notable changes to `laravel-hateoas` will be documented in this file
 
 ## 1.1.2 - 2019-08-28
 
-- Fix return statement in docblock of HasLinks trait ([#12](https://github.com/gdebrauwer/laravel-hateoas/pull/12))
+- Fix return statement in docblock of `HasLinks` trait ([#12](https://github.com/gdebrauwer/laravel-hateoas/pull/12))
 
 ## 1.1.1 - 2019-08-25
 
-- Update docblock of Hateoas facade to include public methods of HateoasManager class ([#11](https://github.com/gdebrauwer/laravel-hateoas/pull/11))
+- Update docblock of `Hateoas` facade to include public methods of `HateoasManager` class ([#11](https://github.com/gdebrauwer/laravel-hateoas/pull/11))
 
 ## 1.1.0 - 2019-08-24
 
@@ -26,7 +32,7 @@ All notable changes to `laravel-hateoas` will be documented in this file
 
 ## 1.0.2 - 2019-08-20
 
-- Use empty Link collection if HATEOAS class triggers exception ([#5](https://github.com/gdebrauwer/laravel-hateoas/pull/5))
+- Use empty `LinkCollection` if HATEOAS class triggers exception ([#5](https://github.com/gdebrauwer/laravel-hateoas/pull/5))
 
 ## 1.0.1 - 2019-08-18
 
