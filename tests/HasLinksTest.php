@@ -8,6 +8,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResource;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExplicitHateoasClass;
+use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArgumentsViaClassParameter;
 
 class HasLinksTest extends TestCase
 {
@@ -21,7 +22,7 @@ class HasLinksTest extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -59,5 +60,16 @@ class HasLinksTest extends TestCase
             ->andReturn([]);
 
         (new MessageResourceWithExtraArguments($this->message))->toArray(null);
+    }
+
+    /** @test */
+    public function it_calls_hateaos_generate_method_with_extra_arguments_provided_via_class_parameter()
+    {
+        Hateoas::shouldReceive('generate')
+            ->once()
+            ->with(Message::class, [$this->message, 'abc', 123])
+            ->andReturn([]);
+
+        (new MessageResourceWithExtraArgumentsViaClassParameter($this->message))->toArray(null);
     }
 }

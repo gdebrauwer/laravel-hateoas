@@ -9,13 +9,18 @@ trait HasLinks
     /**
      * Generate JSON based on the (provided) HATEOAS class.
      *
-     * @param string $class
+     * @param null|array|string $class
      * @param array $arguments
      *
      * @return array
      */
-    public function links(string $class = null, $arguments = [])
+    public function links($class = null, $arguments = [])
     {
+        if (is_array($class)) {
+            $arguments = $class;
+            $class = null;
+        }
+
         return Hateoas::generate(
             $class ?? get_class($this->resource),
             array_merge([$this->resource], $arguments)
