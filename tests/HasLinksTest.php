@@ -3,12 +3,12 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Hateoas;
-use GDebrauwer\Hateoas\Tests\App\Message;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResource;
-use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExplicitHateoasClass;
+use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArgumentsViaClassParameter;
+use GDebrauwer\Hateoas\Tests\App\Message;
 
 class HasLinksTest extends TestCase
 {

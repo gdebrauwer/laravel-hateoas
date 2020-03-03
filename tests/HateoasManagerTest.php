@@ -2,28 +2,28 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use GDebrauwer\Hateoas\Link;
-use InvalidArgumentException;
-use GDebrauwer\Hateoas\HateoasManager;
-use GDebrauwer\Hateoas\LinkCollection;
-use GDebrauwer\Hateoas\Tests\App\Message;
-use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
-use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
+use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\HateoasManager;
+use GDebrauwer\Hateoas\Link;
+use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Tests\App\Formatters\CustomFormatter;
+use GDebrauwer\Hateoas\Tests\App\Formatters\CustomFormatterNotImplementingInterface;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\CustomGuess\CustomGuessMessageHateoas;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\CustomGuess\CustomGuessMessageHateoas;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInALinkException;
-use GDebrauwer\Hateoas\Tests\App\Formatters\CustomFormatterNotImplementingInterface;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnNonLinkException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
+use GDebrauwer\Hateoas\Tests\App\Message;
+use InvalidArgumentException;
 
 class HateoasManagerTest extends TestCase
 {

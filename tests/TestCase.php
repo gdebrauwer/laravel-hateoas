@@ -3,8 +3,8 @@
 namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\HateoasServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use GDebrauwer\Hateoas\Tests\App\Providers\RouteServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {

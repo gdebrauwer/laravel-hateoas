@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
-use GDebrauwer\Hateoas\HateoasManager;
-use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\HateoasManager;
 
 class HateaosServiceProviderTest extends TestCase
 {
