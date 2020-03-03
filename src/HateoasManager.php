@@ -2,12 +2,12 @@
 
 namespace GDebrauwer\Hateoas;
 
-use Throwable;
-use Illuminate\Support\Str;
-use InvalidArgumentException;
-use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use Illuminate\Support\Str;
+use InvalidArgumentException;
+use Throwable;
 
 class HateoasManager
 {

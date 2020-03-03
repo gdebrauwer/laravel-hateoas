@@ -2,11 +2,11 @@
 
 namespace GDebrauwer\Hateoas;
 
-use Throwable;
-use InvalidArgumentException;
-use Illuminate\Routing\Router;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use Illuminate\Routing\Exceptions\UrlGenerationException;
+use Illuminate\Routing\Router;
+use InvalidArgumentException;
+use Throwable;
 
 class Link
 {

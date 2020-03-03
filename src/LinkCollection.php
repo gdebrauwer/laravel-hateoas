@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas;
 
-use Illuminate\Support\Collection;
 use GDebrauwer\Hateoas\Formatters\Formatter;
+use Illuminate\Support\Collection;
 
 class LinkCollection extends Collection
 {

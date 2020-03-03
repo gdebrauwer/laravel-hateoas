@@ -2,10 +2,10 @@
 
 namespace GDebrauwer\Hateoas;
 
-use Illuminate\Support\ServiceProvider;
-use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\Commands\HateoasMakeCommand;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
+use GDebrauwer\Hateoas\Formatters\Formatter;
+use Illuminate\Support\ServiceProvider;
 
 class HateoasServiceProvider extends ServiceProvider
 {

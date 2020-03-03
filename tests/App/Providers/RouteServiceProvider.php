@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Providers;
 
+use GDebrauwer\Hateoas\Tests\App\Message;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use GDebrauwer\Hateoas\Tests\App\Message;
 
 class RouteServiceProvider extends ServiceProvider
 {
