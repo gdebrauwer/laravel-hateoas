@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
+use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\LinkCollection;
-use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 
 class DefaultFormatterTest extends TestCase
 {
@@ -23,7 +23,7 @@ class DefaultFormatterTest extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

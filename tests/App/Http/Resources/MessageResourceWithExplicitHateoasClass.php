@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Http\Resources;
 
+use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 use GDebrauwer\Hateoas\Traits\HasLinks;
 use Illuminate\Http\Resources\Json\JsonResource;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoas;
 
 class MessageResourceWithExplicitHateoasClass extends JsonResource
 {

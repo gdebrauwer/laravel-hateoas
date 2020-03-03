@@ -2,9 +2,9 @@
 
 namespace GDebrauwer\Hateoas\Tests;
 
+use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\LinkCollection;
-use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 
 class CallbackFormatterTest extends TestCase
 {
@@ -18,7 +18,7 @@ class CallbackFormatterTest extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

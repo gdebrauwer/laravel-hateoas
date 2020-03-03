@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Formatters;
 
-use GDebrauwer\Hateoas\LinkCollection;
 use GDebrauwer\Hateoas\Formatters\Formatter;
+use GDebrauwer\Hateoas\LinkCollection;
 
 class CustomFormatter implements Formatter
 {
