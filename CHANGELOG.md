@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.4.0 - 2020-03-03
+
+- Add Laravel 7 support, bump minimum PHP version to 7.3 and drop Laravel 5.8 support ([#26](https://github.com/gdebrauwer/laravel-hateoas/pull/26))
+
 ## 1.3.0 - 2019-09-22
 
 - Change `links()` method of `HasLinks` trait to allow extra arguments array to be passed via first parameter ([#21](https://github.com/gdebrauwer/laravel-hateoas/pull/21))
