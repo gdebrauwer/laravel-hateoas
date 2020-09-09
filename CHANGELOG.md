@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.5.0 - 2020-09-09
+
+- Add Laravel 8 support, and drop Laravel 6 support ([#27](https://github.com/gdebrauwer/laravel-hateoas/pull/27))
+
 ## 1.4.0 - 2020-03-03
 
 - Add Laravel 7 support, bump minimum PHP version to 7.3 and drop Laravel 5.8 support ([#26](https://github.com/gdebrauwer/laravel-hateoas/pull/26))
