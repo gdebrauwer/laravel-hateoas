@@ -22,7 +22,7 @@ class HateoasManager
      * Generate HATEOAS links from the provided class and transform the data to JSON.
      *
      * @param string $class
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return array
      */
@@ -49,7 +49,7 @@ class HateoasManager
      * Get links from a HATEOAS class.
      *
      * @param string $class
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return \GDebrauwer\Hateoas\LinkCollection
      */
@@ -57,12 +57,12 @@ class HateoasManager
     {
         $links = collect(get_class_methods($class))
             ->filter(function ($method) {
-                return ! Str::startsWith($method, '__');
+                return !Str::startsWith($method, '__');
             })
             ->map(function ($method) use ($class, $arguments) {
                 $link = call_user_func_array([app($class), $method], $arguments);
 
-                if ($link === null || ! $link instanceof Link) {
+                if ($link === null || !$link instanceof Link) {
                     return;
                 }
 
@@ -122,7 +122,7 @@ class HateoasManager
         if (is_callable($formatter)) {
             $formatter = new CallbackFormatter($formatter);
         } elseif (is_string($formatter) && class_exists($formatter)) {
-            if (! is_subclass_of($formatter, $interface = Formatter::class)) {
+            if (!is_subclass_of($formatter, $interface = Formatter::class)) {
                 throw new InvalidArgumentException("`{$formatter}` class does not implement the `{$interface}` interface");
             }
 
