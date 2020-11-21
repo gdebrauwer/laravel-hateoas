@@ -19,8 +19,8 @@ class LinkException extends Exception
     }
 
     /**
-     * @param string     $linkName
-     * @param string     $routeName
+     * @param string $linkName
+     * @param string $routeName
      * @param \Throwable $previous
      *
      * @return self

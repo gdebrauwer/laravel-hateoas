@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::post('message', function () {
             return [
-                'id'   => 1,
+                'id' => 1,
                 'text' => 'Hello world!',
             ];
         })->name('message.store');
@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::post('message/{message}/reply', function (Message $message) {
             return [
-                'id'   => 3,
+                'id' => 3,
                 'text' => 'Thank you!',
             ];
         })->name('message.reply');

@@ -12,7 +12,7 @@ class MessageHateoasThatResultsInAnNonLinkException
     /**
      * Get the HATEOAS link to view the message.
      *
-     * @param int          $number
+     * @param int $number
      * @param \App\Message $message
      *
      * @return null|\GDebrauwer\Hateoas\Link

@@ -35,7 +35,7 @@ class CallbackFormatterTest extends TestCase
             return $links->map(function ($link) {
                 return [
                     'name' => $link->name(),
-                    'url'  => $link->url(),
+                    'url' => $link->url(),
                 ];
             })->toArray();
         };

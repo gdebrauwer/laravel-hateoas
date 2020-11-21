@@ -32,8 +32,7 @@ class HateoasMakeCommand extends GeneratorCommand
     /**
      * Build the class with the given name.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return string
      */
     protected function buildClass($name)
@@ -48,9 +47,8 @@ class HateoasMakeCommand extends GeneratorCommand
     /**
      * Replace the model for the given stub.
      *
-     * @param string $stub
-     * @param string $model
-     *
+     * @param  string  $stub
+     * @param  string  $model
      * @return string
      */
     protected function replaceModel($stub, $model)
@@ -66,9 +64,7 @@ class HateoasMakeCommand extends GeneratorCommand
         }
 
         $stub = str_replace(
-            "use {$namespaceModel};\nuse {$namespaceModel};",
-            "use {$namespaceModel};",
-            $stub
+            "use {$namespaceModel};\nuse {$namespaceModel};", "use {$namespaceModel};", $stub
         );
 
         $model = class_basename(trim($model, '\\'));
@@ -95,8 +91,7 @@ class HateoasMakeCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      *
-     * @param string $rootNamespace
-     *
+     * @param  string  $rootNamespace
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)
