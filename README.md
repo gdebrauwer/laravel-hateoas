@@ -1,8 +1,7 @@
 # Laravel HATEOAS
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://packagist.org/packages/gdebrauwer/laravel-hateoas)
-[![Build Status](https://img.shields.io/travis/gdebrauwer/laravel-hateoas/master.svg?style=flat-square)](https://travis-ci.org/gdebrauwer/laravel-hateoas)
-[![Quality Score](https://img.shields.io/scrutinizer/g/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://scrutinizer-ci.com/g/gdebrauwer/laravel-hateoas)
+[![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/gdebrauwer/laravel-hateoas/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/gdebrauwer/laravel-hateoas/actions?query=workflow%3Arun-tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/gdebrauwer/laravel-hateoas.svg?style=flat-square)](https://packagist.org/packages/gdebrauwer/laravel-hateoas)
 
 [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) allows you to expose the authorization logic of your REST API.
@@ -156,6 +155,12 @@ Hateoas::guessHateoasClassNameUsing(function (string $class) {
 
 ```bash
 composer test
+```
+
+## Linting
+
+```bash
+composer lint
 ```
 
 ## Changelog
