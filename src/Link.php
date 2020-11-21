@@ -35,7 +35,7 @@ class Link
      * Create a new HATEOAS link.
      *
      * @param string $routeName
-     * @param array $routeParameters
+     * @param array  $routeParameters
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class Link
      * Create a new HATEOAS link.
      *
      * @param string $routeName
-     * @param array $routeParameters
+     * @param array  $routeParameters
      *
      * @return self
      */

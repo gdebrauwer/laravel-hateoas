@@ -18,7 +18,7 @@ class MessageHateoasWithConstructorDependencyInjection
     /**
      * Create a new HATEOAS instance.
      *
-     * @param \Illuminate\Cache\CacheManager  $cache
+     * @param \Illuminate\Cache\CacheManager $cache
      *
      * @return void
      */

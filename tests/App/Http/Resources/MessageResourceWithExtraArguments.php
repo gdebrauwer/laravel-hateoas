@@ -19,8 +19,8 @@ class MessageResourceWithExtraArguments extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'text' => $this->text,
+            'id'     => $this->id,
+            'text'   => $this->text,
             '_links' => $this->links(null, ['abc', 123]),
         ];
     }

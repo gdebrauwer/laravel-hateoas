@@ -13,8 +13,8 @@ class MessageHateoasWithExtraParameters
      * Get the HATEOAS link to view the message.
      *
      * @param \App\Message $message
-     * @param int $number
-     * @param string $text
+     * @param int          $number
+     * @param string       $text
      *
      * @return null|\GDebrauwer\Hateoas\Link
      */
@@ -27,7 +27,7 @@ class MessageHateoasWithExtraParameters
      * Get the HATEOAS link to delete the message.
      *
      * @param \App\Message $message
-     * @param int $number
+     * @param int          $number
      *
      * @return null|\GDebrauwer\Hateoas\Link
      */
