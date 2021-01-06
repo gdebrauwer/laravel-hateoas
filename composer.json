@@ -22,7 +22,7 @@
         "spatie/once": "^2.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
+        "friendsofphp/php-cs-fixer": "^2.17",
         "orchestra/testbench": "^5.0|^6.0",
         "phpunit/phpunit": "^9.1"
     },
