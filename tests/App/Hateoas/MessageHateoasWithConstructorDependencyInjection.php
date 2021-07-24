@@ -2,7 +2,7 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
-use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use GDebrauwer\Hateoas\Traits\CreatesLinks;
 use Illuminate\Cache\CacheManager;
 

@@ -2,14 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests\App;
 
-use Illuminate\Database\Eloquent\Model;
+use GDebrauwer\Hateoas\Tests\App\Models\Message as MessageNotInModelsDirectory;
 
-class Message extends Model
+class Message extends MessageNotInModelsDirectory
 {
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [];
 }
