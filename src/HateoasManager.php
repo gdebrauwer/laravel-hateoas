@@ -5,6 +5,8 @@ namespace GDebrauwer\Hateoas;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Formatters\Formatter;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Throwable;
@@ -93,7 +95,15 @@ class HateoasManager
 
         $classDirname = str_replace('/', '\\', dirname(str_replace('\\', '/', $class)));
 
-        return $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
+        $classDirnameSegments = explode('\\', $classDirname);
+
+        return Collection::times(count($classDirnameSegments), function ($index) use ($class, $classDirnameSegments) {
+            $classDirname = implode('\\', array_slice($classDirnameSegments, 0, $index));
+
+            return $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
+        })->reverse()->values()->first(function ($class) {
+            return class_exists($class);
+        }) ?: $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
     }
 
     /**

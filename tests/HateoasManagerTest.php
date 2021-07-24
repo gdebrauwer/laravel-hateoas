@@ -22,7 +22,8 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependency
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
-use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Tests\App\Message as MessageNotInModelsDirectory;
+use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use InvalidArgumentException;
 
 class HateoasManagerTest extends TestCase
@@ -251,6 +252,23 @@ class HateoasManagerTest extends TestCase
         });
 
         $result = $this->manager->generate(Message::class, [Message::make(['id' => 1])]);
+
+        $this->assertEquals([], $result);
+    }
+
+    /** @test */
+    public function it_generates_a_link_collection_for_guessed_hateoas_class_based_on_provided_class_not_in_models_directory()
+    {
+        $this->mock(DefaultFormatter::class, function ($mock) {
+            $mock->shouldReceive('format')
+                ->once()
+                ->withArgs(function ($links) {
+                    return $links->count() === 3;
+                })
+                ->andReturn([]);
+        });
+
+        $result = $this->manager->generate(MessageNotInModelsDirectory::class, [MessageNotInModelsDirectory::make(['id' => 1])]);
 
         $this->assertEquals([], $result);
     }

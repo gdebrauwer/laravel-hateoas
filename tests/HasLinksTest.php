@@ -8,7 +8,7 @@ use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResource;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExplicitHateoasClass;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArgumentsViaClassParameter;
-use GDebrauwer\Hateoas\Tests\App\Message;
+use GDebrauwer\Hateoas\Tests\App\Models\Message;
 
 class HasLinksTest extends TestCase
 {
