@@ -2,8 +2,8 @@
 
 namespace GDebrauwer\Hateoas\Tests\App;
 
-use GDebrauwer\Hateoas\Tests\App\Models\Message as MessageNotInModelsDirectory;
+use GDebrauwer\Hateoas\Tests\App\Models\Message as MessageInModelsDirectory;
 
-class Message extends MessageNotInModelsDirectory
+class Message extends MessageInModelsDirectory
 {
 }
