@@ -22,8 +22,8 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependency
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
-use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use GDebrauwer\Hateoas\Tests\App\Message as MessageNotInModelsDirectory;
+use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use InvalidArgumentException;
 
 class HateoasManagerTest extends TestCase
