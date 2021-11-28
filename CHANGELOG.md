@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 1.7.0 - 2021-11-28
+
+- Add PHP 8.1 support ([#33](https://github.com/gdebrauwer/laravel-hateoas/pull/33))
+
 ## 1.6.1 - 2021-07-24
 
 - Support Eloquent models in "Models" directory ([#32](https://github.com/gdebrauwer/laravel-hateoas/pull/32))
