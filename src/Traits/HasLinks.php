@@ -9,7 +9,7 @@ trait HasLinks
     /**
      * Generate JSON based on the (provided) HATEOAS class.
      *
-     * @param null|array|string $class
+     * @param array|string|null $class
      * @param array $arguments
      *
      * @return array

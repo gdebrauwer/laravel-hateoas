@@ -14,7 +14,7 @@ class MessageHateoasReturningNotAllLinks
      *
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function self(Message $message)
     {
@@ -26,7 +26,7 @@ class MessageHateoasReturningNotAllLinks
      *
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function reply(Message $message)
     {
@@ -38,7 +38,7 @@ class MessageHateoasReturningNotAllLinks
      *
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function delete(Message $message)
     {

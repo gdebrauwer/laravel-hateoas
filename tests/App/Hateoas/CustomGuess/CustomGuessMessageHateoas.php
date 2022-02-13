@@ -14,7 +14,7 @@ class CustomGuessMessageHateoas
      *
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function self(Message $message)
     {

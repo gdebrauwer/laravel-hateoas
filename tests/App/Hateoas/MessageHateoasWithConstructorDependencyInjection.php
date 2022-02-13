@@ -18,7 +18,7 @@ class MessageHateoasWithConstructorDependencyInjection
     /**
      * Create a new HATEOAS instance.
      *
-     * @param \Illuminate\Cache\CacheManager  $cache
+     * @param \Illuminate\Cache\CacheManager $cache
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class MessageHateoasWithConstructorDependencyInjection
      *
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function self(Message $message)
     {
