@@ -15,7 +15,7 @@ class MessageHateoasThatResultsInAnNonLinkException
      * @param int $number
      * @param \App\Message $message
      *
-     * @return null|\GDebrauwer\Hateoas\Link
+     * @return \GDebrauwer\Hateoas\Link|null
      */
     public function self(int $number, Message $message)
     {

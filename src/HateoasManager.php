@@ -5,7 +5,6 @@ namespace GDebrauwer\Hateoas;
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Formatters\Formatter;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -100,10 +99,10 @@ class HateoasManager
         return Collection::times(count($classDirnameSegments), function ($index) use ($class, $classDirnameSegments) {
             $classDirname = implode('\\', array_slice($classDirnameSegments, 0, $index));
 
-            return $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
+            return $classDirname . '\\Hateoas\\' . class_basename($class) . 'Hateoas';
         })->reverse()->values()->first(function ($class) {
             return class_exists($class);
-        }) ?: $classDirname.'\\Hateoas\\'.class_basename($class).'Hateoas';
+        }) ?: $classDirname . '\\Hateoas\\' . class_basename($class) . 'Hateoas';
     }
 
     /**
@@ -123,7 +122,7 @@ class HateoasManager
     /**
      * Set formatter that needs to be used to format a link collection to JSON format.
      *
-     * @param string|callable $formatter
+     * @param callable|string $formatter
      *
      * @return self
      */
@@ -133,7 +132,9 @@ class HateoasManager
             $formatter = new CallbackFormatter($formatter);
         } elseif (is_string($formatter) && class_exists($formatter)) {
             if (! is_subclass_of($formatter, $interface = Formatter::class)) {
-                throw new InvalidArgumentException("`{$formatter}` class does not implement the `{$interface}` interface");
+                throw new InvalidArgumentException(
+                    "`{$formatter}` class does not implement the `{$interface}` interface"
+                );
             }
 
             $formatter = app($formatter);
