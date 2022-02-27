@@ -2,13 +2,11 @@
 
 namespace GDebrauwer\Hateoas;
 
-use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Throwable;
 
 class HateoasManager
 {
@@ -22,15 +20,7 @@ class HateoasManager
             $class = $hateoasClass;
         }
 
-        try {
-            return $this->getLinksFrom($class, $arguments)->format();
-        } catch (Throwable $exception) {
-            if ($exception instanceof LinkException) {
-                throw $exception;
-            }
-
-            return (new LinkCollection())->format();
-        }
+        return $this->getLinksFrom($class, $arguments)->format();
     }
 
     protected function getLinksFrom(string $class, array $arguments = []) : LinkCollection
