@@ -6,14 +6,7 @@ use GDebrauwer\Hateoas\Link;
 
 trait CreatesLinks
 {
-    /**
-     * Create a new link.
-     *
-     * @param array $arguments
-     *
-     * @return \GDebrauwer\Hateoas\Link
-     */
-    protected function link(...$arguments)
+    protected function link(...$arguments) : Link
     {
         return Link::make(...$arguments);
     }

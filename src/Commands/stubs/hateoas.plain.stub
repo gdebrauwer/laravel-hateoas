@@ -8,11 +8,6 @@ class DummyClass
 {
     use CreatesLinks;
 
-    /**
-     * Create a new HATEOAS class instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //

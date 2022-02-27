@@ -17,7 +17,6 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNoLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNonLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasReturningNotAllLinks;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInALinkException;
-use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasThatResultsInAnNonLinkException;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithConstructorDependencyInjection;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithExtraParameters;
 use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithNonSnakeCaseMethods;
@@ -108,21 +107,6 @@ class HateoasManagerTest extends TestCase
         });
 
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNoLinks::class, [Message::make(['id' => 1])]));
-    }
-
-    /** @test */
-    public function it_generates_an_empty_link_collection_if_the_hateoas_class_does_not_exist()
-    {
-        $this->mock(DefaultFormatter::class, function ($mock) {
-            $mock->shouldReceive('format')
-                ->once()
-                ->withArgs(function ($links) {
-                    return $links->count() === 0;
-                })
-                ->andReturn([]);
-        });
-
-        $this->assertEquals([], $this->manager->generate(MessageHateoasThatDoesNotExist::class, [Message::make(['id' => 1])]));
     }
 
     /** @test */
@@ -293,21 +277,6 @@ class HateoasManagerTest extends TestCase
         $result = $this->manager->generate(Message::class, [Message::make(['id' => 1])]);
 
         $this->assertEquals([], $result);
-    }
-
-    /** @test */
-    public function it_does_not_throw_an_exception_and_fallbacks_on_empty_link_collection_if_exception_is_not_a_link_exception()
-    {
-        $this->mock(DefaultFormatter::class, function ($mock) {
-            $mock->shouldReceive('format')
-                ->once()
-                ->withArgs(function ($links) {
-                    return $links->count() === 0;
-                })
-                ->andReturn([]);
-        });
-
-        $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInAnNonLinkException::class, [Message::make(['id' => 1])]));
     }
 
     /** @test */

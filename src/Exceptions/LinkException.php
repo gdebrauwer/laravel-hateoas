@@ -7,13 +7,7 @@ use Throwable;
 
 class LinkException extends Exception
 {
-    /**
-     * @param string $linkName
-     * @param string $routeName
-     *
-     * @return self
-     */
-    public static function routeNotFound(string $linkName, string $routeName)
+    public static function routeNotFound(string $linkName, string $routeName) : self
     {
         return new static(
             "Link with name `{$linkName}` could not be created " .
@@ -21,14 +15,7 @@ class LinkException extends Exception
         );
     }
 
-    /**
-     * @param string $linkName
-     * @param string $routeName
-     * @param \Throwable $previous
-     *
-     * @return self
-     */
-    public static function routeMissingParameters(string $linkName, string $routeName, Throwable $previous)
+    public static function routeMissingParameters(string $linkName, string $routeName, Throwable $previous) : self
     {
         return new static(
             "Link with name `{$linkName}` could not be created " .

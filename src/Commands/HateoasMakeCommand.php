@@ -8,35 +8,13 @@ use Symfony\Component\Console\Input\InputOption;
 
 class HateoasMakeCommand extends GeneratorCommand
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
     protected $name = 'make:hateoas';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Create a new HATEOAS class';
 
-    /**
-     * The type of class being generated.
-     *
-     * @var string
-     */
     protected $type = 'Hateoas';
 
-    /**
-     * Build the class with the given name.
-     *
-     * @param string $name
-     *
-     * @return string
-     */
-    protected function buildClass($name)
+    protected function buildClass($name) : string
     {
         $stub = parent::buildClass($name);
 
@@ -45,15 +23,7 @@ class HateoasMakeCommand extends GeneratorCommand
         return $model ? $this->replaceModel($stub, $model) : $stub;
     }
 
-    /**
-     * Replace the model for the given stub.
-     *
-     * @param string $stub
-     * @param string $model
-     *
-     * @return string
-     */
-    protected function replaceModel($stub, $model)
+    protected function replaceModel($stub, $model) : string
     {
         $model = str_replace('/', '\\', $model);
 
@@ -80,36 +50,17 @@ class HateoasMakeCommand extends GeneratorCommand
         return str_replace('dummyModel', Str::camel($model), $stub);
     }
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected function getStub()
+    protected function getStub() : string
     {
-        return $this->option('model')
-                    ? __DIR__ . '/stubs/hateoas.stub'
-                    : __DIR__ . '/stubs/hateoas.plain.stub';
+        return $this->option('model') ? __DIR__ . '/stubs/hateoas.stub' : __DIR__ . '/stubs/hateoas.plain.stub';
     }
 
-    /**
-     * Get the default namespace for the class.
-     *
-     * @param string $rootNamespace
-     *
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getDefaultNamespace($rootNamespace) : string
     {
         return $rootNamespace . '\Hateoas';
     }
 
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getOptions()
+    protected function getOptions() : array
     {
         return [
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'The model that the HATEOAS class applies to'],

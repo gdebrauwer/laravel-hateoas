@@ -9,10 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class HateoasServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
+    public function boot() : void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -21,10 +18,7 @@ class HateoasServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Register the application services.
-     */
-    public function register()
+    public function register() : void
     {
         $this->app->singleton('hateoas', function () {
             return $this->app->make(HateoasManager::class);

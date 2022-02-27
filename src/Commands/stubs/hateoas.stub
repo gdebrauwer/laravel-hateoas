@@ -3,20 +3,14 @@
 namespace DummyNamespace;
 
 use NamespacedDummyModel;
+use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Traits\CreatesLinks;
 
 class DummyClass
 {
     use CreatesLinks;
 
-    /**
-     * Get the HATEOAS link to view the DocDummyModel.
-     *
-     * @param \NamespacedDummyModel $dummyModel
-     *
-     * @return null|\GDebrauwer\Hateoas\Link
-     */
-    public function self(DummyModel $dummyModel)
+    public function self(DummyModel $dummyModel) : ?Link
     {
         //
     }
