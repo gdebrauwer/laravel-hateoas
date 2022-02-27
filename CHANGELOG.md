@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 2.0.0 - 2022-02-27
+
+- Drop PHP 7.x and Laravel 7/8 support ([#36](https://github.com/gdebrauwer/laravel-hateoas/pull/36))
+- Do not handle exceptions anymore during creation of hateoas links ([#36](https://github.com/gdebrauwer/laravel-hateoas/pull/36))
+
 ## 1.8.0 - 2022-02-13
 
 - Add Laravel 9 support ([#34](https://github.com/gdebrauwer/laravel-hateoas/pull/34))
