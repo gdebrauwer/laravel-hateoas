@@ -12,22 +12,9 @@ use Throwable;
 
 class HateoasManager
 {
-    /**
-     * The callback to be used to guess HATEOAS class name.
-     *
-     * @var callable|null
-     */
-    protected $guessHateoasClassNameUsingCallback;
+    protected $guessHateoasClassNameUsingCallback = null;
 
-    /**
-     * Generate HATEOAS links from the provided class and transform the data to JSON.
-     *
-     * @param string $class
-     * @param array $arguments
-     *
-     * @return array
-     */
-    public function generate(string $class, array $arguments = [])
+    public function generate(string $class, array $arguments = []) : array
     {
         $hateoasClass = $this->guessHateoasClassName($class);
 
@@ -46,15 +33,7 @@ class HateoasManager
         }
     }
 
-    /**
-     * Get links from a HATEOAS class.
-     *
-     * @param string $class
-     * @param array $arguments
-     *
-     * @return \GDebrauwer\Hateoas\LinkCollection
-     */
-    protected function getLinksFrom(string $class, $arguments = [])
+    protected function getLinksFrom(string $class, array $arguments = []) : LinkCollection
     {
         $links = collect(get_class_methods($class))
             ->filter(function ($method) {
@@ -79,14 +58,7 @@ class HateoasManager
         return LinkCollection::make($links);
     }
 
-    /**
-     * Guess the HATEOAS class name for the given class.
-     *
-     * @param string $class
-     *
-     * @return string
-     */
-    protected function guessHateoasClassName(string $class)
+    protected function guessHateoasClassName(string $class) : string
     {
         if ($this->guessHateoasClassNameUsingCallback !== null) {
             return call_user_func($this->guessHateoasClassNameUsingCallback, $class);
@@ -105,28 +77,14 @@ class HateoasManager
         }) ?: $classDirname . '\\Hateoas\\' . class_basename($class) . 'Hateoas';
     }
 
-    /**
-     * Specify a callback to be used to guess the HATEOAS class name.
-     *
-     * @param callable $callback
-     *
-     * @return self
-     */
-    public function guessHateoasClassNameUsing(callable $callback)
+    public function guessHateoasClassNameUsing(callable $callback) : self
     {
         $this->guessHateoasClassNameUsingCallback = $callback;
 
         return $this;
     }
 
-    /**
-     * Set formatter that needs to be used to format a link collection to JSON format.
-     *
-     * @param callable|string $formatter
-     *
-     * @return self
-     */
-    public function formatLinksUsing($formatter)
+    public function formatLinksUsing($formatter) : self
     {
         if (is_callable($formatter)) {
             $formatter = new CallbackFormatter($formatter);

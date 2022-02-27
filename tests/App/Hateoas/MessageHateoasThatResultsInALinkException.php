@@ -2,6 +2,7 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
+use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use GDebrauwer\Hateoas\Traits\CreatesLinks;
 
@@ -9,14 +10,7 @@ class MessageHateoasThatResultsInALinkException
 {
     use CreatesLinks;
 
-    /**
-     * Get the HATEOAS link to view the message.
-     *
-     * @param \App\Message $message
-     *
-     * @return \GDebrauwer\Hateoas\Link|null
-     */
-    public function self(Message $message)
+    public function self(Message $message) : ?Link
     {
         return $this->link('message.show');
     }

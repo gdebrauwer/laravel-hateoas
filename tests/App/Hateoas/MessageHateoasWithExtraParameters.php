@@ -2,6 +2,7 @@
 
 namespace GDebrauwer\Hateoas\Tests\App\Hateoas;
 
+use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use GDebrauwer\Hateoas\Traits\CreatesLinks;
 
@@ -9,29 +10,12 @@ class MessageHateoasWithExtraParameters
 {
     use CreatesLinks;
 
-    /**
-     * Get the HATEOAS link to view the message.
-     *
-     * @param \App\Message $message
-     * @param int $number
-     * @param string $text
-     *
-     * @return \GDebrauwer\Hateoas\Link|null
-     */
-    public function self(Message $message, int $number, string $text)
+    public function self(Message $message, int $number, string $text) : ?Link
     {
         return $this->link('message.show', ['message' => $text]);
     }
 
-    /**
-     * Get the HATEOAS link to delete the message.
-     *
-     * @param \App\Message $message
-     * @param int $number
-     *
-     * @return \GDebrauwer\Hateoas\Link|null
-     */
-    public function delete(Message $message, int $number)
+    public function delete(Message $message, int $number) : ?Link
     {
         return $this->link('message.destroy', ['message' => $number]);
     }

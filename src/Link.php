@@ -4,41 +4,19 @@ namespace GDebrauwer\Hateoas;
 
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use Illuminate\Routing\Exceptions\UrlGenerationException;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use InvalidArgumentException;
 use Throwable;
 
 class Link
 {
-    /**
-     * The name of the link.
-     *
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * The route name of the link.
-     *
-     * @var string
-     */
-    protected $routeName;
+    protected string $routeName;
 
-    /**
-     * The route parameters of the link.
-     *
-     * @var array
-     */
-    protected $routeParameters;
+    protected array $routeParameters;
 
-    /**
-     * Create a new HATEOAS link.
-     *
-     * @param string $routeName
-     * @param array $routeParameters
-     *
-     * @return void
-     */
     public function __construct(string $routeName, array $routeParameters = [])
     {
         $this->name = $routeName;
@@ -46,51 +24,27 @@ class Link
         $this->routeParameters = $routeParameters;
     }
 
-    /**
-     * Create a new HATEOAS link.
-     *
-     * @param string $routeName
-     * @param array $routeParameters
-     *
-     * @return self
-     */
     public static function make(string $routeName, array $routeParameters = [])
     {
         return new self($routeName, $routeParameters);
     }
 
-    /**
-     * Set name of link.
-     *
-     * @param string $name
-     *
-     * @return self
-     */
-    public function as(string $name)
+    public function as(string $name) : self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * Get the name of the link.
-     *
-     * @return string
-     */
-    public function name()
+    public function name() : string
     {
         return $this->name;
     }
 
     /**
-     * Get the HTTP method of the link.
-     *
      * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
-     *
-     * @return string
      */
-    public function method()
+    public function method() : string
     {
         return once(function () {
             return collect($this->route()->methods)->first(function ($method) {
@@ -100,13 +54,9 @@ class Link
     }
 
     /**
-     * Get the URL path of the link.
-     *
      * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
-     *
-     * @return string
      */
-    public function path()
+    public function path() : string
     {
         return once(function () {
             try {
@@ -126,13 +76,9 @@ class Link
     }
 
     /**
-     * Get the URL of the link.
-     *
      * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
-     *
-     * @return string
      */
-    public function url()
+    public function url() : string
     {
         return once(function () {
             try {
@@ -151,24 +97,15 @@ class Link
         });
     }
 
-    /**
-     * Get the route name of the link.
-     *
-     * @return string
-     */
-    public function routeName()
+    public function routeName() : string
     {
         return $this->routeName;
     }
 
     /**
-     * Get the route of the link.
-     *
      * @throws \GDebrauwer\Hateoas\Exceptions\LinkException
-     *
-     * @return \Illuminate\Routing\Route
      */
-    protected function route()
+    protected function route() : Route
     {
         return once(function () {
             $route = app(Router::class)->getRoutes()->getByName($this->routeName);

@@ -6,15 +6,7 @@ use GDebrauwer\Hateoas\Hateoas;
 
 trait HasLinks
 {
-    /**
-     * Generate JSON based on the (provided) HATEOAS class.
-     *
-     * @param array|string|null $class
-     * @param array $arguments
-     *
-     * @return array
-     */
-    public function links($class = null, $arguments = [])
+    public function links(array | string | null $class = null, array $arguments = []) : array
     {
         if (is_array($class)) {
             $arguments = $class;
