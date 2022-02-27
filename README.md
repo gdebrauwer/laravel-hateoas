@@ -59,14 +59,7 @@ class MessageHateoas
 {
     use CreatesLinks;
 
-    /**
-     * Get the HATEOAS link to view the message.
-     *
-     * @param \App\Message $message
-     *
-     * @return null|\GDebrauwer\Hateoas\Link
-     */
-    public function self(Message $message)
+    public function self(Message $message) : ?Link
     {
         if (! auth()->user()->can('view', $message)) {
             return;
@@ -75,14 +68,7 @@ class MessageHateoas
         return $this->link('message.show', ['message' => $message]);
     }
 
-    /**
-     * Get the HATEOAS link to delete the message.
-     *
-     * @param \App\Message $message
-     *
-     * @return null|\GDebrauwer\Hateoas\Link
-     */
-    public function delete(Message $message)
+    public function delete(Message $message) : ?Link
     {
         if (! auth()->user()->can('delete', $message)) {
             return $this->link('message.archive', ['message' => $message]);
@@ -100,14 +86,7 @@ class MessageResource extends JsonResource
 {
     use HasLinks;
 
-    /**
-     * Transform the resource into an array.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array
-     */
-    public function toArray($request)
+    public function toArray($request) : array
     {
         return [
             'id' => $this->id,
