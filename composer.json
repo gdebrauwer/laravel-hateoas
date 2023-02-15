@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1",
+        "php": "^8.0|^8.1|^8.2",
         "illuminate/support": "^9.0|^10.0",
         "illuminate/routing": "^9.0|^10.0",
         "spatie/once": "^3.0"
