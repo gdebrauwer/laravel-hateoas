@@ -18,16 +18,16 @@
     ],
     "require": {
         "php": "^8.0|^8.1",
-        "illuminate/support": "^9.0",
-        "illuminate/routing": "^9.0",
-        "spatie/once": "3.0"
+        "illuminate/support": "^9.0|^10.0",
+        "illuminate/routing": "^9.0|^10.0",
+        "spatie/once": "^3.0"
     },
     "require-dev": {
         "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "orchestra/testbench": "^7.0",
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "orchestra/testbench": "^7.0|^8.0",
         "phpunit/phpunit": "^9.5",
-        "squizlabs/php_codesniffer": "^3.6"
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
         "psr-4": {
