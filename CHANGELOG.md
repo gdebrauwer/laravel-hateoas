@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 2.1.0 - 2023-02-15
+
+- Add PHP 8.2 support ([#38](https://github.com/gdebrauwer/laravel-hateoas/pull/38))
+- Add Laravel 10 support ([#37](https://github.com/gdebrauwer/laravel-hateoas/pull/37))
+
 ## 2.0.0 - 2022-02-27
 
 - Drop PHP 7.x and Laravel 7/8 support ([#36](https://github.com/gdebrauwer/laravel-hateoas/pull/36))
