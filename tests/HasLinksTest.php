@@ -13,7 +13,7 @@ use GDebrauwer\Hateoas\Tests\App\Models\Message;
 class HasLinksTest extends TestCase
 {
     /**
-     * @var \GDebrauwer\Hateoas\Tests\App\Message
+     * @var \GDebrauwer\Hateoas\Tests\App\Models\Message
      */
     public $message;
 
