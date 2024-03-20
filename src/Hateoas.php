@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \GDebrauwer\Hateoas\HateoasManager guessHateoasClassNameUsing(callable $callback)
  * @method static \GDebrauwer\Hateoas\HateoasManager formatLinksUsing(callable $callback)
  *
- * @see HateoasManager
+ * @see \GDebrauwer\Hateoas\HateoasManager
  */
 class Hateoas extends Facade
 {
