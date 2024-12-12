@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-hateoas` will be documented in this file
 
+## 2.3.0 - 2024-12-12
+
+- Add PHP 8.4 support ([#41](https://github.com/gdebrauwer/laravel-hateoas/pull/41))
+
 ## 2.2.0 - 2024-03-20
 
 - Add PHP 8.3 support ([#40](https://github.com/gdebrauwer/laravel-hateoas/pull/40))
