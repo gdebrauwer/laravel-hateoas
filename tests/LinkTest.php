@@ -4,15 +4,18 @@ namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Exceptions\LinkException;
 use GDebrauwer\Hateoas\Link;
+use PHPUnit\Framework\Attributes\Test;
 
 class LinkTest extends TestCase
 {
+    #[Test]
     /** @test */
     public function it_can_be_created_using_static_method()
     {
         $this->assertInstanceOf(Link::class, Link::make('message.show', ['message' => 1]));
     }
 
+    #[Test]
     /** @test */
     public function it_uses_the_route_name_as_name_by_default()
     {
@@ -21,6 +24,7 @@ class LinkTest extends TestCase
         $this->assertEquals('message.show', $link->name());
     }
 
+    #[Test]
     /** @test */
     public function it_can_be_given_a_name()
     {
@@ -30,6 +34,7 @@ class LinkTest extends TestCase
         $this->assertEquals('random_name', $link->name());
     }
 
+    #[Test]
     /** @test */
     public function it_can_get_the_http_method_of_the_route()
     {
@@ -44,6 +49,7 @@ class LinkTest extends TestCase
         $this->assertEquals('DELETE', $deleteRouteLink->method());
     }
 
+    #[Test]
     /** @test */
     public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_http_method_of_route()
     {
@@ -55,6 +61,7 @@ class LinkTest extends TestCase
         $link->method();
     }
 
+    #[Test]
     /** @test */
     public function it_can_get_the_path_of_the_route()
     {
@@ -63,6 +70,7 @@ class LinkTest extends TestCase
         $this->assertEquals('/message/1', $link->path());
     }
 
+    #[Test]
     /** @test */
     public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_path_of_route()
     {
@@ -74,6 +82,7 @@ class LinkTest extends TestCase
         $link->path();
     }
 
+    #[Test]
     /** @test */
     public function it_throws_link_exception_if_it_misses_route_parameters_when_trying_to_get_path_of_route()
     {
@@ -85,6 +94,7 @@ class LinkTest extends TestCase
         $link->path();
     }
 
+    #[Test]
     /** @test */
     public function it_can_get_the_full_url_of_the_route()
     {
@@ -93,6 +103,7 @@ class LinkTest extends TestCase
         $this->assertEquals('http://localhost/message/1', $link->url());
     }
 
+    #[Test]
     /** @test */
     public function it_throws_link_exception_if_it_can_not_find_route_by_name_when_trying_to_get_full_url_of_route()
     {
@@ -104,6 +115,7 @@ class LinkTest extends TestCase
         $link->url();
     }
 
+    #[Test]
     /** @test */
     public function it_throws_link_exception_if_it_misses_route_parameters_when_trying_to_get_full_url_of_route()
     {
@@ -115,6 +127,7 @@ class LinkTest extends TestCase
         $link->url();
     }
 
+    #[Test]
     /** @test */
     public function it_can_get_the_route_name()
     {

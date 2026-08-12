@@ -24,6 +24,7 @@ use GDebrauwer\Hateoas\Tests\App\Hateoas\MessageHateoasWithSpecificNamedLink;
 use GDebrauwer\Hateoas\Tests\App\Message as MessageNotInModelsDirectory;
 use GDebrauwer\Hateoas\Tests\App\Models\Message;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 class HateoasManagerTest extends TestCase
 {
@@ -76,6 +77,7 @@ class HateoasManagerTest extends TestCase
         return true;
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection()
     {
@@ -94,6 +96,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoas::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_an_empty_link_collection_if_no_methods_of_hateoas_class_return_links()
     {
@@ -109,6 +112,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNoLinks::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_without_nullable_results_of_methods_of_hateoas_class()
     {
@@ -126,6 +130,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNotAllLinks::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_without_non_link_results_of_methods_of_hateoas_class()
     {
@@ -142,6 +147,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasReturningNonLinks::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_from_results_of_hateoas_class_methods_with_extra_arguments()
     {
@@ -159,6 +165,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasWithExtraParameters::class, [Message::make(['id' => 1]), 123, 'abc']));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_with_snake_case_hateoas_class_method_names_as_link_names()
     {
@@ -176,6 +183,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasWithNonSnakeCaseMethods::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_where_links_can_have_custom_names_if_specified()
     {
@@ -193,6 +201,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasWithSpecificNamedLink::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_even_if_hateoas_class_constructor_uses_dependency_injection()
     {
@@ -209,6 +218,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasWithConstructorDependencyInjection::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_and_returns_the_array_created_using_the_binded_formatter_class()
     {
@@ -223,6 +233,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals(['key' => 'value'], $result);
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_for_guessed_hateoas_class_based_on_provided_class()
     {
@@ -240,6 +251,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $result);
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_for_guessed_hateoas_class_based_on_provided_class_not_in_models_directory()
     {
@@ -257,6 +269,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $result);
     }
 
+    #[Test]
     /** @test */
     public function it_generates_a_link_collection_for_hateoas_class_guessed_with_custom_closure()
     {
@@ -279,6 +292,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $result);
     }
 
+    #[Test]
     /** @test */
     public function it_throws_exception_if_exception_is_a_link_exception_when_generating_hateoas_result()
     {
@@ -287,6 +301,7 @@ class HateoasManagerTest extends TestCase
         $this->assertEquals([], $this->manager->generate(MessageHateoasThatResultsInALinkException::class, [Message::make(['id' => 1])]));
     }
 
+    #[Test]
     /** @test */
     public function it_binds_a_callback_formatter_to_formatter_interface()
     {
@@ -303,6 +318,7 @@ class HateoasManagerTest extends TestCase
         );
     }
 
+    #[Test]
     /** @test */
     public function it_binds_an_instance_of_provided_formatter_class_to_formatter_interface()
     {
@@ -311,6 +327,7 @@ class HateoasManagerTest extends TestCase
         $this->assertInstanceOf(CustomFormatter::class, app(Formatter::class));
     }
 
+    #[Test]
     /** @test */
     public function it_throws_exception_if_provided_formatter_class_does_not_exist()
     {
@@ -322,6 +339,7 @@ class HateoasManagerTest extends TestCase
         $this->manager->formatLinksUsing($formatter);
     }
 
+    #[Test]
     /** @test */
     public function it_throws_exception_if_provided_formatter_class_does_not_implement_the_formatter_interface()
     {
@@ -334,6 +352,7 @@ class HateoasManagerTest extends TestCase
         $this->manager->formatLinksUsing($formatter);
     }
 
+    #[Test]
     /** @test */
     public function it_throws_exception_if_provided_formatter_is_no_callable_or_string()
     {

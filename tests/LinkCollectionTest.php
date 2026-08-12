@@ -4,9 +4,11 @@ namespace GDebrauwer\Hateoas\Tests;
 
 use GDebrauwer\Hateoas\Formatters\Formatter;
 use GDebrauwer\Hateoas\LinkCollection;
+use PHPUnit\Framework\Attributes\Test;
 
 class LinkCollectionTest extends TestCase
 {
+    #[Test]
     /** @test */
     public function it_can_format_links_using_the_class_binded_to_formatter_interface()
     {

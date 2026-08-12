@@ -5,6 +5,7 @@ namespace GDebrauwer\Hateoas\Tests;
 use GDebrauwer\Hateoas\Formatters\DefaultFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\LinkCollection;
+use PHPUnit\Framework\Attributes\Test;
 
 class DefaultFormatterTest extends TestCase
 {
@@ -35,6 +36,7 @@ class DefaultFormatterTest extends TestCase
         $this->formatter = new DefaultFormatter();
     }
 
+    #[Test]
     /** @test */
     public function it_returns_an_array_containing_arrays()
     {
@@ -47,6 +49,7 @@ class DefaultFormatterTest extends TestCase
         }
     }
 
+    #[Test]
     /** @test */
     public function it_returns_array_of_arrays_that_each_have_rel_key_containing_name_of_their_link()
     {
@@ -59,6 +62,7 @@ class DefaultFormatterTest extends TestCase
         $this->assertEquals($this->links[1]->name(), $result[1]['rel']);
     }
 
+    #[Test]
     /** @test */
     public function it_returns_array_of_arrays_that_each_have_type_key_containing_http_method_of_their_link()
     {
@@ -71,6 +75,7 @@ class DefaultFormatterTest extends TestCase
         $this->assertEquals($this->links[1]->method(), $result[1]['type']);
     }
 
+    #[Test]
     /** @test */
     public function it_returns_an_array_with_href_key_containing_url_of_link()
     {

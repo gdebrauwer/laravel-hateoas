@@ -5,6 +5,7 @@ namespace GDebrauwer\Hateoas\Tests;
 use GDebrauwer\Hateoas\Formatters\CallbackFormatter;
 use GDebrauwer\Hateoas\Link;
 use GDebrauwer\Hateoas\LinkCollection;
+use PHPUnit\Framework\Attributes\Test;
 
 class CallbackFormatterTest extends TestCase
 {
@@ -28,6 +29,7 @@ class CallbackFormatterTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_returns_an_array_formatted_using_the_callback_of_the_formatter()
     {

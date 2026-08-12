@@ -9,6 +9,7 @@ use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExplicitHateo
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArguments;
 use GDebrauwer\Hateoas\Tests\App\Http\Resources\MessageResourceWithExtraArgumentsViaClassParameter;
 use GDebrauwer\Hateoas\Tests\App\Models\Message;
+use PHPUnit\Framework\Attributes\Test;
 
 class HasLinksTest extends TestCase
 {
@@ -29,6 +30,7 @@ class HasLinksTest extends TestCase
         $this->message = Message::make(['id' => 123, 'text' => 'Hello world!']);
     }
 
+    #[Test]
     /** @test */
     public function it_calls_hateaos_generate_method_with_resource_class_if_no_other_class_specified()
     {
@@ -40,6 +42,7 @@ class HasLinksTest extends TestCase
         (new MessageResource($this->message))->toArray(null);
     }
 
+    #[Test]
     /** @test */
     public function it_calls_hateaos_generate_method_with_explicitly_provided_class()
     {
@@ -51,6 +54,7 @@ class HasLinksTest extends TestCase
         (new MessageResourceWithExplicitHateoasClass($this->message))->toArray(null);
     }
 
+    #[Test]
     /** @test */
     public function it_calls_hateaos_generate_method_with_extra_arguments()
     {
@@ -62,6 +66,7 @@ class HasLinksTest extends TestCase
         (new MessageResourceWithExtraArguments($this->message))->toArray(null);
     }
 
+    #[Test]
     /** @test */
     public function it_calls_hateaos_generate_method_with_extra_arguments_provided_via_class_parameter()
     {
